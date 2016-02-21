@@ -44,17 +44,17 @@ Webdevelopers, Back- and FrontEnd-People, Cordova- and Phonegap Developers, Auto
 
    Set your local wildcard domain in:
    
-    ```
-   $config["tld"] = "dev";
-   ```
+```
+$config["tld"] = "dev";
+```
    
    Set the absolute path to your web root:
    
-    ```
-   $config["project_group"][0] = [
-       "name" => "My Projects",
-       "directory" => "/absolute/path/to/webroot/",
-    ```
+```
+$config["project_group"][0] = [
+        "name" => "My Projects",
+        "directory" => "/absolute/path/to/webroot/",
+```
            
   Example: "/Users/your_username/Sites/" **(Don't forget the slashes!)**
   
@@ -69,34 +69,31 @@ Webdevelopers, Back- and FrontEnd-People, Cordova- and Phonegap Developers, Auto
 
 LocalAdmin lists all folders (No files!), which are in a given directory **AND** the content of these folders matches your "matching_path". Some examples:
 
-Matches everything in your webroot. This is the default.
+Lists everything in your webroot. This is the default.
 
- ```
-   $config["project_group"][0] = [
-       "name" => "My Projects",
-       "directory" => "/absolute/path/to/webroot/",
-       "matching_path" => "/",     
-    ```
+```
+$config["project_group"][0] = [
+        "name" => "My Projects",
+        "directory" => "/absolute/path/to/webroot/",
+        "matching_path" => "/",     
+```
+ Lists only folders, which have inside a www folder:
  
- Matches only folders, which have inside a www folder:
- 
-  ```
-    $config["project_group"][0] = [
+```     
+$config["project_group"][0] = [
         "name" => "My Projects",
         "directory" => "/absolute/path/to/webroot/",
         "matching_path" => "/www/",     
-     ```
-   ```
+```
+ 
+Lists only folders, which have inside a htdocs/www folder (This is the standard structure I use in my webprojects):
 
-Matches only folders, which have inside a htdocs/www folder (This is the standard structure I use in my webprojects:
-
- ```
-   $config["project_group"][0] = [
-       "name" => "My Projects",
-       "directory" => "/absolute/path/to/webroot/",
-       "matching_path" => "/htdocs/www/",     
-    ```
-
+```
+$config["project_group"][0] = [
+        "name" => "My Projects",
+        "directory" => "/absolute/path/to/webroot/",
+        "matching_path" => "/htdocs/www/",     
+```
 
 ## <a name="extending">Extending LocalAdmin</a>
 change of htdocs
