@@ -67,6 +67,36 @@ Webdevelopers, Back- and FrontEnd-People, Cordova- and Phonegap Developers, Auto
 
 ## How it works
 
+LocalAdmin lists all folders (No files!), which are in a given directory **AND** the content of these folders matches your "matching_path". Some examples:
+
+Matches everything in your webroot. This is the default.
+
+ ```
+   $config["project_group"][0] = [
+       "name" => "My Projects",
+       "directory" => "/absolute/path/to/webroot/",
+       "matching_path" => "/",     
+    ```
+ 
+ Matches only folders, which have inside a www folder:
+ 
+  ```
+    $config["project_group"][0] = [
+        "name" => "My Projects",
+        "directory" => "/absolute/path/to/webroot/",
+        "matching_path" => "/www/",     
+     ```
+   ```
+
+Matches only folders, which have inside a htdocs/www folder (This is the standard structure I use in my webprojects:
+
+ ```
+   $config["project_group"][0] = [
+       "name" => "My Projects",
+       "directory" => "/absolute/path/to/webroot/",
+       "matching_path" => "/htdocs/www/",     
+    ```
+
 
 ## <a name="extending">Extending LocalAdmin</a>
 change of htdocs
