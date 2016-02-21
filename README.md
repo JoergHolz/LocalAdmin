@@ -13,13 +13,13 @@ Webdevelopers, Back- and FrontEnd-People, Cordova- and Phonegap Developers, Auto
 
 ## Requirements
 
-- local web server
+– local web server
 
-- local TLD (see below)
+– local TLD (see below)
 
-- PHP >= 5.6, works great with PHP 7
+– PHP >= 5.6, works great with PHP 7
 
-- For best experience: [LocalAdmin-URL-Scheme-Launcher](https://github.com/JoergHolz/LocalAdmin-URL-Scheme-Launcher) (OS X only)
+– For best experience: [LocalAdmin-URL-Scheme-Launcher](https://github.com/JoergHolz/LocalAdmin-URL-Scheme-Launcher) (OS X only)
 
 
 ## Get started
@@ -42,21 +42,25 @@ Webdevelopers, Back- and FrontEnd-People, Cordova- and Phonegap Developers, Auto
 
 5. Open settings.php in localadmin/application/config and find the following configurations:
 
-   Set your local wildcard domain in:
+
+Set your local wildcard domain in:
    
 ```
-$config["tld"] = "dev";
+   $config["tld"] = "dev";
 ```
    
-   Set the absolute path to your web root:
+
+    Set the absolute path to your web root:
+
    
 ```
-$config["project_group"][0] = [
-        "name" => "My Projects",
-        "directory" => "/absolute/path/to/webroot/",
+   $config["project_group"][0] = [
+           "name" => "My Projects",
+          "directory" => "/absolute/path/to/webroot/",
 ```
            
-  Example: "/Users/your_username/Sites/" **(Don't forget the slashes!)**
+    
+    Example: "/Users/your_username/Sites/" **(Don't forget the slashes!)**
   
 6. Install [LocalAdmin-URL-Scheme-Launcher](https://github.com/JoergHolz/LocalAdmin-URL-Scheme-Launcher) (OS X only)
 
@@ -95,14 +99,87 @@ $config["project_group"][0] = [
         "matching_path" => "/htdocs/www/",     
 ```
 
+### Practical Example
+
+Let's say you have the following folder structure in your webserver root:
+
+```
+mobile-apps
+    app1
+        platforms
+    app2
+        platforms
+    app3
+        platforms
+       
+miller-company
+    backend
+        htdocs
+    frontend
+        htdocs
+    shop
+        htdocs
+    documents
+        logos
+         
+my_web1
+    htdocs
+my_web2
+    htdocs
+my_web3
+    htdocs
+    documents
+        redame.txt
+my_web4
+    htdocs
+```
+
+Your settings will look like:
+
+```
+$config["project_group"][0] = [
+        "name" => "Mobile Apps",
+        "directory" => "/absolute/path/to/webroot/mobile-apps/",
+        "matching_path" => "/",
+
+$config["project_group"][1] = [
+        "name" => "Miller Company",
+        "directory" => "/absolute/path/to/webroot/miller-company/",
+        "matching_path" => "/htdocs/",
+        
+$config["project_group"][2] = [
+        "name" => "My Webs",
+        "directory" => "/absolute/path/to/webroot/",
+        "matching_path" => "/htdocs/",
+```
+
+The first setting lists every folder in mobile-apps because of the simple slash.
+
+The second setting lists the folders backend, frontend and shop **but not** the documents folder, because it has no htdocs inside.
+
+The third setting lists my_web1 … my_web4 **but not** the folders mobile-apps and miller-company, because … right, they don't have a htdocs in the first level.
+
+
+####Advanced Example
+Lets take the above example an say we want to have a extra group listed in LocalAdmin which contains all project having a document folder in it:
+ 
+```
+$config["project_group"][0] = [
+        "name" => "Document Folders",
+        "directory" => "/absolute/path/to/webroot/",
+        "matching_path" => "/documents/",
+``` 
+
+This would lists: miller-company and my_web3.
+
+## Settings
+
+
+
+
 ## <a name="extending">Extending LocalAdmin</a>
 change of htdocs
 
-## How it works
-
-## Usage
-
-## Settings
 
 
 ## History
@@ -111,17 +188,17 @@ Version: 1.0
 
 ## Credits
 
-– Christa
+Christa
 
-– [Localhomepage](http://cmall.github.io/LocalHomePage/)
+[Localhomepage](http://cmall.github.io/LocalHomePage/)
 
 ## Links
 
-- [Codeigniter](http://www.codeigniter.com)
+[Codeigniter](http://www.codeigniter.com)
 
-- [Bootstrap](http://getbootstrap.com)
+[Bootstrap](http://getbootstrap.com)
 
-- [Chris Mallinson](https://mallinson.ca)
+[Chris Mallinson](https://mallinson.ca)
 
 ## License
 
