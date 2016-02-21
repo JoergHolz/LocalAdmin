@@ -2,7 +2,7 @@
 
 Weeks ago I deleted Apples Server.app (I had to much trouble to set up vhosts.). I setup my own server and was looking for a project administration tool.
 
-I found [Localhomepage](http://cmall.github.io/LocalHomePage/), a great idea and nice tool from [Chris Mallinson](https://mallinson.ca). I decided to pick up the idea and bring some automation and developer things in to it.
+I found [Localhomepage](http://cmall.github.io/LocalHomePage/), a great idea and nice tool from [Chris Mallinson](https://mallinson.ca). I decided to pick up the idea and bring some automation and developer things into it.
 
 The result is LocalAdmin, here a real life screenshot:
 
@@ -14,12 +14,12 @@ Webdevelopers, Back- and FrontEnd-People, Cordova- and Phonegap Developers, Auto
 ## Requirements
 
 - local web server
+
 - local TLD (see below)
+
 - PHP >= 5.6, works great with PHP 7
 
-    For best experience:
-
-- [LocalAdmin-URL-Scheme-Launcher](https://github.com/JoergHolz/LocalAdmin-URL-Scheme-Launcher) (OS X only)
+- For best experience: [LocalAdmin-URL-Scheme-Launcher](https://github.com/JoergHolz/LocalAdmin-URL-Scheme-Launcher) (OS X only)
 
 ## Get started
 
@@ -28,10 +28,10 @@ Webdevelopers, Back- and FrontEnd-People, Cordova- and Phonegap Developers, Auto
 
      Mac OS X: [The Perfect Web Development Environment for Your New Mac](https://mallinson.ca/osx-web-development/)
    
-     Windows: [Apache 2.x on Microsoft Windows](http://php.net/manual/en/install.windows.apache2.php)
+     Windows: [Apache 2.x on Microsoft Windows](http://php.net/manual/en/install.windows.apache2.php)  
      Windows Wildcard Domain: [Wildcard Subdomains in Apache](http://blog.calcatraz.com/wildcard-subdomains-in-apache-1422)
    
-     Linux: [Apache 2.x on Unix systems](http://php.net/manual/en/install.windows.apache2.php)
+     Linux: [Apache 2.x on Unix systems](http://php.net/manual/en/install.windows.apache2.php) 
      Linux Wildcard Domain: [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html)
 
 2. Download and unzip localadmin
