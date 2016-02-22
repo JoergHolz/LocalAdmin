@@ -195,13 +195,19 @@ $config["splashscreen"]
 $config["navbar"]
 ```
 
+####All Projects
+
+```
+$config["all_projects"]
+```
+
 ####Project Groups
 
 ```
 $config["project_group"]
 ```
 
-####Single Settings for every Project
+####Optional Settings for every Project
 
 ```
 $config["site_options"]
