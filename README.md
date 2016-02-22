@@ -43,14 +43,15 @@ Webdevelopers, Back- and FrontEnd-People, Cordova- and Phonegap Developers, Auto
 5. Open settings.php in localadmin/application/config and find the following configurations:
 
 
-Set your local wildcard domain in:
+Set your local wildcard domain in tld:
    
 ```
-   $config["tld"] = "dev";
+   $config["general"] = [
+       "tld" => "dev",
 ```
    
 
-    Set the absolute path to your web root:
+    Set the absolute path to your web root in directory:
 
    
 ```
@@ -161,7 +162,7 @@ The third setting lists my_web1 … my_web4 **but not** the folders mobile-apps 
 
 
 ####Advanced Example
-Lets take the above example an say we want to have a extra group listed in LocalAdmin which contains all project having a document folder in it:
+Lets take the above example an say we want to have an extra group listed in LocalAdmin which contains all projects having a document folder inside:
  
 ```
 $config["project_group"][0] = [
@@ -173,6 +174,39 @@ $config["project_group"][0] = [
 This would lists: miller-company and my_web3.
 
 ## Settings
+
+You find all settings in the file application/config/settings.php. All settings are stored in an array called $config, and grouped into:
+
+####General behavior of LocalAdmin:
+
+```
+$config["general"]
+```
+
+####Splashscreen
+
+```
+$config["splashscreen"]
+```
+
+####Top Navigation
+
+```
+$config["navbar"]
+```
+
+####Project Groups
+
+```
+$config["project_group"]
+```
+
+####Single Settings for every Project
+
+```
+$config["site_options"]
+```
+
 
 
 
