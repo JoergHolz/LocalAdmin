@@ -84,6 +84,7 @@ Webdevelopers, Back- and Frontend-People, Cordova- and Phonegap Developers, Auto
 
         $config["general"] = [
                "tld" => "dev",
+               ...
 
     Set the absolute path to your web root in "directory":
 
@@ -91,6 +92,7 @@ Webdevelopers, Back- and Frontend-People, Cordova- and Phonegap Developers, Auto
         $config["project_group"][0] = [
                 "name" => "My Projects",
                 "directory" => "/absolute/path/to/webroot/",
+                ...
 
            
     
@@ -111,14 +113,16 @@ Lists everything in your webroot. This is the default.
 ```
 $config["project_group"][0] = [
         "directory" => "/absolute/path/to/webroot/",
-        "matching_path" => "/",     
+        "matching_path" => "/",
+        ...
 ```
  Lists only folders, which have inside a www folder:
  
 ```     
 $config["project_group"][0] = [
         "directory" => "/absolute/path/to/webroot/",
-        "matching_path" => "/www/",     
+        "matching_path" => "/www/",
+        ...
 ```
  
 Lists only folders, which have inside a www/htdocs folder (This is the standard structure I use in my webprojects):
@@ -126,7 +130,8 @@ Lists only folders, which have inside a www/htdocs folder (This is the standard 
 ```
 $config["project_group"][0] = [
        "directory" => "/absolute/path/to/webroot/",
-        "matching_path" => "/www/htdocs/",     
+        "matching_path" => "/www/htdocs/",
+        ...
 ```
 
 ###5.1 Practical Example
@@ -164,20 +169,23 @@ my_web4
     htdocs
 ```
 
-Your settings will look like:
+Your settings could look like:
 
 ```
 $config["project_group"][0] = [
         "directory" => "/absolute/path/to/webroot/mobile-apps/",
         "matching_path" => "/",
+        ...
 
 $config["project_group"][1] = [
         "directory" => "/absolute/path/to/webroot/miller-company/",
         "matching_path" => "/htdocs/",
+        ...
         
 $config["project_group"][2] = [
         "directory" => "/absolute/path/to/webroot/",
         "matching_path" => "/htdocs/",
+        ...
 ```
 
 The first setting lists every folder in mobile-apps because of the simple slash.
@@ -194,13 +202,14 @@ Lets take the above example an say we want to have an extra group listed in Loca
 $config["project_group"][0] = [
         "directory" => "/absolute/path/to/webroot/",
         "matching_path" => "/documents/",
+        ...
 ``` 
 
 This would list: miller-company and my_web3
 
 ##6 Settings
 
-You find all settings in the file application/config/settings.php. All settings are stored in an array called $config, and grouped into:
+You find all settings in the file application/config/settings.php. All settings are stored in an array called $config and grouped into:
 
 ###6.1 General Behavior of LocalAdmin
 
@@ -227,9 +236,9 @@ Description:
 | Name        | Type          | Description  |
 | ------------- |-------------| -----|
 | "tld"      | String | name of your local wildcard TLD, default "dev". If you don't use a wildcard TLD, LocalAdmin will not work properly out of the box.
-| "show_tooltips"      | Boolean      | set to TRUE to show tooltips. |
+| "show_tooltips"      | Boolean      | set to TRUE to show tooltips |
 | "allow_shell_scripts" | Boolean      | enables support for shell scripts, default FALSE. **Before enabling, read the sections [Shell Scripts](#shell-scripts) and [Security](#security).** |
-| "button_groups_in_two_rows"|Boolean|how the button groups will be shown: FALSE (Default) in one row, TRUE in two rows. This setting is also aviable in the project group settings and for every single project.
+| "button_groups_in_two_rows"|Boolean|how the button groups will be shown: FALSE (Default) in one row, TRUE in two rows. This setting overrides the same called settings in project groups and settings for each project.
 |"button_groups_in_two_rows_at"|Integer|the window width in pixel, when the button groups will shown in two rows. Good for small browser windows.
 
 
@@ -409,12 +418,14 @@ Showing two project groups:
 ```
 $config["project_group"][0] = [
     "directory" => "/absolute/path/to/webroot/",
-    "matching_path" => "/", ...
+    "matching_path" => "/", 
+    ...
 ];
 
 $config["project_group"][1] = [
     "directory" => "/absolute/path/to/webroot/mobile-apps/another_path/",
-    "matching_path" => "/", ...
+    "matching_path" => "/", 
+    ...
 ];
 ```
 
@@ -426,18 +437,15 @@ Description:
 | "directory" | String | absolute path to your webroot/projectfolder, read [How it works](#5-how-it-works)   |
 | "matching_path" | String | the path matching condition for showing folders/projects, read [How it works](#5-how-it-works)  |
 | "has_subdomains| Boolean | set to true, if you have setup your vhost to use subdomains in the path of your project group  |
-| "columns" | Integer | number of projects to show in one row, can be 1, 2, 3 or 4  |
+| "columns" | Integer | number of projects to be shown in one row, can be 1, 2, 3 or 4  |
 | "button_groups_in_two_rows" | Boolean | set to true, if you want to show the local-/remote-button-group in two rows.  |
 | "hidden_sites" | Array | list here all sites by their directory names, which you don't want to see in your project group  |
 | "title_buttons" | Array | setup for buttons, shown right of the project group name, see [6.7 Buttons](#67-buttons)  |
-| "local_button_group" | Array |   |
-| "remote_button_group" | Array |   |
+| "local_button_group" | Array | see [6.7 Buttons](#67-buttons)   |
+| "remote_button_group" | Array | see [6.7 Buttons](#67-buttons)  |
 
 
-
-
-
-Default setup, read [4. Get started](#4-get-started):
+Default project group setup in settings.php, read [4. Get started](#4-get-started):
 
 
 
@@ -461,9 +469,58 @@ $config["site_options"]
 ##10. Advanced Use Cases
 
 ##11. Extending LocalAdmin
-change of htdocs
 
+###11.1 Moving htdocs
+If you need or want to change the location of htdocs, then you have to change these two setting in index.php:
 
+```
+$system_path = '../system';
+```
+
+```
+$application_folder = '../application';
+```
+
+###11.2 Creating your own Buttons
+Every button type has a corresponding private function, which is located in application/controllers/LocalAdmin.php 
+
+If you define a new type «my_button»:
+ 
+```
+ "local_button_group" => [
+         "title" => "Local:",
+         "buttons" => [
+             0 => [
+                 "type" => "my_button",
+                 "key1" => "value1",
+                 "key2" => "value2"
+             ]
+         ]
+     ]
+```
+
+You need the private function «_my_button» in application/controllers/LocalAdmin.php
+
+```
+  function _my_button($button){
+        // create your button as <a href='…>label</a> and return it
+    }
+```
+
+$button contains:
+```
+[type] => my_button
+[key1] => value1
+[key2] => value2
+[file] => /path/to…/example
+[domain] => example
+[siteroot] => http://example.dev
+[project] => example
+[target] => _blank
+[tooltip] => 
+```
+
+How to create Bootstrap Buttons: (http://getbootstrap.com/css/#buttons) Remeber to return <a> buttons otherwise you have to write same CSS.
 
 ##12. History
 
@@ -473,7 +530,8 @@ Version: 1.0
 
 Christa
 
-[Localhomepage](http://cmall.github.io/LocalHomePage/)
+[Chris Mallinson](https://mallinson.ca)
+
 
 ##14. Links
 
@@ -481,7 +539,7 @@ Christa
 
 [Bootstrap](http://getbootstrap.com)
 
-[Chris Mallinson](https://mallinson.ca)
+[Localhomepage](http://cmall.github.io/LocalHomePage/)
 
 [ipify](https://www.ipify.org)
 
@@ -490,3 +548,22 @@ Christa
 MIT License (MIT)
 
 Copyright (c) 2016 Jörg Holz | [https://www.workflow-management.net](https://www.workflow-management.net)
+
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
