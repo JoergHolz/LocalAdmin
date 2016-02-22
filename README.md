@@ -1,19 +1,78 @@
-#LocalAdmin - a webbased Admin Tool
+#LocalAdmin - Having Things in one Place
 
-Weeks ago I deleted Apples Server.app (I had to much trouble to set up vhosts.). I setup my own server and was looking for a project administration tool to have things in one place?
+Weeks ago I deleted Apples Server.app (I had to much trouble to set up vhosts.). I did my own server and was looking for a project administration tool.
 
 I found [Localhomepage](http://cmall.github.io/LocalHomePage/), a great idea and nice tool from [Chris Mallinson](https://mallinson.ca). I decided to pick up the idea and bring some automation and developer things into it.
 
-Wouldn't it be nice to have one place, where you have all your project links, starting your IDE/SDK, jump to the project directory, open files, open developer tools, iOS Simulator, …
+Wouldn't it be nice to have one place, where you have all your project links, starting your IDE/SDK, jump to the project directory, open the project in different browsers, open files, open developer tools, iOS Simulator, …?
 
-I did some development and the result is LocalAdmin::
+I did some development and the result is LocalAdmin - get in touch with it:
 
- ![LocalAdmin dialog](doc_images/localadmin.png) 
+![LocalAdmin dialog](doc_images/localadmin.png) 
 
-## Who should use LocalAdmin?
+---
+##Table of Contents
+
+[1. Screenshots](#1-screenshots)
+
+[2. Who should use LocalAdmin?](#2-who-should-use-localadmin)
+
+[3. Requirements](#3-requirements)
+
+[4. Get started](#4-get-started)
+
+[5. How it works](#5-how-it-works)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.1 Practical Example](#51-practical-example)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.2 Advanced Example](#52-advanced-example)
+
+[6. Settings](#6-settings)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.1 General Behavior of LocalAdmin](#61-general-behavior-of-localadmin)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.2 Splashscreen](#62-splashscreen)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3 Top Navigation](#63-top-navigation)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3.1 Top Navbar General Settings](#631-top-navbar-general-settings)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3.2 Top Navbar Links](#632-top-navbar-links)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.4 All Projects](#64-all-projects)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.5 Project Groups](#65-project-groups)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.6 Optional Settings for each Project](#66-optional-settings-for-each-project)
+
+[7. URL Launcher](#7-url-launcher)
+
+[8. Shell Scripts](#8-shell-scripts)
+
+[9. Security](#9-security)
+
+[10. Advanced Use Cases](#10-advanced-use-cases)
+
+[11. Extending LocalAdmin](#11-extending-localadmin)
+
+[12. History](#12-history)
+
+[13. Credits](#13-credits)
+
+[14. Links](#14-links)
+
+[15. License](#15-license)
+
+
+
+
+##1. Screenshots
+![LocalAdmin dialog](doc_images/localadmin.png) 
+
+##2. Who should use LocalAdmin?
 Webdevelopers, Back- and Frontend-People, Cordova- and Phonegap Developers, Automation Developers and every one who wants to use a local webdriven folder and document tool.
 
-## Requirements
+##3. Requirements
 
 – local web server
 
@@ -24,7 +83,7 @@ Webdevelopers, Back- and Frontend-People, Cordova- and Phonegap Developers, Auto
 – For best experience: [LocalAdmin-URL-Scheme-Launcher](https://github.com/JoergHolz/LocalAdmin-URL-Scheme-Launcher) (OS X only)
 
 
-## Get started
+##4. Get started
 
 1. If you have not setup a local webserver, PHP and a local wildcard domain, then do so. Here are some links:
 
@@ -66,7 +125,7 @@ Webdevelopers, Back- and Frontend-People, Cordova- and Phonegap Developers, Auto
 
 8. You are done!
 
-##How it works
+##5. How it works
 
 LocalAdmin lists all folders (No files!), which are in a given directory **AND** the content of these folders matches your "matching_path". Some examples:
 
@@ -85,15 +144,15 @@ $config["project_group"][0] = [
         "matching_path" => "/www/",     
 ```
  
-Lists only folders, which have inside a htdocs/www folder (This is the standard structure I use in my webprojects):
+Lists only folders, which have inside a www/htdocs folder (This is the standard structure I use in my webprojects):
 
 ```
 $config["project_group"][0] = [
        "directory" => "/absolute/path/to/webroot/",
-        "matching_path" => "/htdocs/www/",     
+        "matching_path" => "/www/htdocs/",     
 ```
 
-###Practical Example
+###5.1 Practical Example
 
 Let's say you have the following folder structure in your webserver root:
 
@@ -151,7 +210,7 @@ The second setting lists the folders backend, frontend and shop **but not** the 
 The third setting lists my_web1 … my_web4 **but not** the folders mobile-apps and miller-company, because … right, they don't have a htdocs in the first level.
 
 
-####Advanced Example
+####5.2 Advanced Example
 Lets take the above example an say we want to have an extra group listed in LocalAdmin which contains all projects having a document folder inside:
  
 ```
@@ -162,11 +221,11 @@ $config["project_group"][0] = [
 
 This would list: miller-company and my_web3
 
-##Settings
+##6 Settings
 
 You find all settings in the file application/config/settings.php. All settings are stored in an array called $config, and grouped into:
 
-###1. General behavior of LocalAdmin:
+###6.1 General Behavior of LocalAdmin
 
 Saved in:
 
@@ -197,7 +256,7 @@ Description:
 |"button_groups_in_two_rows_at"|Integer|the window width in pixel, when the button groups will shown in two rows. Good for small browser windows.
 
 
-###2. Splashscreen
+###6.2 Splashscreen
 The splashscreen is the start screen of LocalAdmin. It prevents your to use LocalAdmin until it is fully loaded.
 
 Saved in:
@@ -224,7 +283,7 @@ Description:
 |"logo_path"|String|relative path to splashscreen logo, leave blank to hide. default size: 128px x 128px |
 |"text"|String|text or html to be displayed, default "Loading"|
 
-###3. Top Navigation
+###6.3 Top Navigation
 
 Saved in:
 
@@ -232,7 +291,7 @@ Saved in:
 $config["navbar"]
 ```
 
-####3.1 Top Navbar General Settings
+####6.3.1 Top Navbar General Settings
 
 Saved in:
 
@@ -261,7 +320,7 @@ Description:
 |  "show_public_ip"|Boolean|set to TRUE to show public IP of your network. Makes request to: https://api.ipify.org
 
 
-####3.2 Top Navbar Links
+####6.3.2 Top Navbar Links
 
 The navigation links can be simple links ore dropdowns.
 
@@ -317,7 +376,7 @@ Description:
 |"divider"|Boolean|set to TRUE to show a divider (separator line) below the link
 
 
-###All Projects
+###6.4 All Projects
 Saved in:
 
 ```
@@ -339,7 +398,7 @@ Description:
 |-------------|-------------|-----|
 |"hide_if_contains"|String|If you want to hide projects (directories) which name contains a word or phrase, this is the right place.
 
-###Project Groups
+###6.5 Project Groups
 
 A project group is a collection of directories in specific path (setting: "directory") and a matching structure (setting: "matching_path").
 
@@ -360,35 +419,37 @@ $config["project_group"][0] = [
 ];
 ```
 
-###Optional Settings for every Project
+###6.6 Optional Settings for each Project
 
 ```
 $config["site_options"]
 ```
 
 
-##Shell Scripts
+##7. URL Launcher
 
-##Security
+##8. Shell Scripts
 
-##Advanced Use Cases
+##9. Security
 
-## <a name="extending">Extending LocalAdmin</a>
+##10. Advanced Use Cases
+
+##11. Extending LocalAdmin
 change of htdocs
 
 
 
-## History
+##12. History
 
 Version: 1.0
 
-## Credits
+##13. Credits
 
 Christa
 
 [Localhomepage](http://cmall.github.io/LocalHomePage/)
 
-## Links
+##14. Links
 
 [Codeigniter](http://www.codeigniter.com)
 
@@ -398,7 +459,7 @@ Christa
 
 [ipify](https://www.ipify.org)
 
-## License
+##15. License
 
 MIT License (MIT)
 
