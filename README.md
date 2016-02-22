@@ -22,27 +22,17 @@ I did some development and the result is LocalAdmin - get in touch with it:
 [4. Get started](#4-get-started)
 
 [5. How it works](#5-how-it-works)
-
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.1 Practical Example](#51-practical-example)
-
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.2 Advanced Example](#52-advanced-example)
 
 [6. Settings](#6-settings)
-
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.1 General Behavior of LocalAdmin](#61-general-behavior-of-localadmin)
-
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.2 Splashscreen](#62-splashscreen)
-
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3 Top Navigation](#63-top-navigation)
-
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3.1 Top Navbar General Settings](#631-top-navbar-general-settings)
-
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3.2 Top Navbar Links](#632-top-navbar-links)
-
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.4 All Projects](#64-all-projects)
-
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.5 Project Groups](#65-project-groups)
-
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.6 Optional Settings for each Project](#66-optional-settings-for-each-project)
 
 [7. URL Launcher](#7-url-launcher)
@@ -99,7 +89,7 @@ Webdevelopers, Back- and Frontend-People, Cordova- and Phonegap Developers, Auto
 
 3. Move it to the root of your webserver where all your other project are
 
-4. Depending on the settings of your vhost, there may be a need of some changes. The document root of LocalAdmin is /htdocs. If you want to move the folder htdocs somewhere else, read below [Extending LocalAdmin](#extending-localadmin) 
+4. Depending on the settings of your vhost, there may be a need of some changes. The document root of LocalAdmin is /htdocs. If you want to move the folder htdocs somewhere else, read below [Extending LocalAdmin](#11-extending-localadmin) 
 
 5. Open settings.php in localadmin/application/config and find the following configurations:
 
@@ -402,7 +392,7 @@ Description:
 
 A project group is a collection of directories in specific path (setting: "directory") and a matching structure (setting: "matching_path").
 
-Before you start to make your settings, you should read [How it works](#how-it-works).
+Before you start to make your settings, you should read [How it works](#5-how-it-works).
 
 Saved in:
 
