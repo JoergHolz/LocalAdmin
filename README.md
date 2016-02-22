@@ -13,19 +13,14 @@ I did some development and the result is LocalAdmin - get in touch with it:
 ---
 ##Table of Contents
 
-[1. Screenshots](#1-screenshots)
-
-[2. Who should use LocalAdmin?](#2-who-should-use-localadmin)
-
-[3. Requirements](#3-requirements)
-
-[4. Get started](#4-get-started)
-
+[1. Screenshots](#1-screenshots)   
+[2. Who should use LocalAdmin?](#2-who-should-use-localadmin)   
+[3. Requirements](#3-requirements)   
+[4. Get started](#4-get-started)   
 [5. How it works](#5-how-it-works)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.1 Practical Example](#51-practical-example)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.2 Advanced Example](#52-advanced-example)   
-
-[6. Settings](#6-settings)
+[6. Settings](#6-settings)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.1 General Behavior of LocalAdmin](#61-general-behavior-of-localadmin)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.2 Splashscreen](#62-splashscreen)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3 Top Navigation](#63-top-navigation)  
@@ -34,24 +29,15 @@ I did some development and the result is LocalAdmin - get in touch with it:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.4 All Projects](#64-all-projects)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.5 Project Groups](#65-project-groups)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.6 Optional Settings for each Project](#66-optional-settings-for-each-project)   
-
-[7. URL Launcher](#7-url-launcher)
-
-[8. Shell Scripts](#8-shell-scripts)
-
-[9. Security](#9-security)
-
-[10. Advanced Use Cases](#10-advanced-use-cases)
-
-[11. Extending LocalAdmin](#11-extending-localadmin)
-
-[12. History](#12-history)
-
-[13. Credits](#13-credits)
-
-[14. Links](#14-links)
-
-[15. License](#15-license)
+[7. URL Launcher](#7-url-launcher)   
+[8. Shell Scripts](#8-shell-scripts)   
+[9. Security](#9-security)   
+[10. Advanced Use Cases](#10-advanced-use-cases)   
+[11. Extending LocalAdmin](#11-extending-localadmin)   
+[12. History](#12-history)   
+[13. Credits](#13-credits)   
+[14. Links](#14-links)   
+[15. License](#15-license)   
 
 
 
