@@ -28,7 +28,8 @@ I did some development and the result is LocalAdmin - get in touch with it:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3.2 Top Navbar Links](#632-top-navbar-links)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.4 All Projects](#64-all-projects)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.5 Project Groups](#65-project-groups)   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.6 Optional Settings for each Project](#66-optional-settings-for-each-project)   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.6 Settings for each Project](#66-settings-for-each-project)   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.7 Buttons](#67-buttons)
 [7. URL Launcher](#7-url-launcher)   
 [8. Shell Scripts](#8-shell-scripts)   
 [9. Security](#9-security)   
@@ -225,15 +226,15 @@ Description:
 
 | Name        | Type          | Description  |
 | ------------- |-------------| -----|
-| "tld"      | String | Name of your local wildcard TLD, default "dev". If you don't use a wildcard TLD, LocalAdmin will not work properly out of the box.
+| "tld"      | String | name of your local wildcard TLD, default "dev". If you don't use a wildcard TLD, LocalAdmin will not work properly out of the box.
 | "show_tooltips"      | Boolean      | set to TRUE to show tooltips. |
 | "allow_shell_scripts" | Boolean      | enables support for shell scripts, default FALSE. **Before enabling, read the sections [Shell Scripts](#shell-scripts) and [Security](#security).** |
-| "button_groups_in_two_rows"|Boolean|how the button groups will be shown: FALSE (Default) in one row, TRUE in two rows. This behavior you can also setup in the project group settings and for every single project individual.
+| "button_groups_in_two_rows"|Boolean|how the button groups will be shown: FALSE (Default) in one row, TRUE in two rows. This setting is also aviable in the project group settings and for every single project.
 |"button_groups_in_two_rows_at"|Integer|the window width in pixel, when the button groups will shown in two rows. Good for small browser windows.
 
 
 ###6.2 Splashscreen
-The splashscreen is the start screen of LocalAdmin. It prevents your to use LocalAdmin until it is fully loaded.
+The splashscreen is the start screen of LocalAdmin. It prevents you to use LocalAdmin until it is fully loaded.
 
 Saved in:
 
@@ -256,7 +257,7 @@ Description:
 | Name        | Type          | Description  |
 |-------------|-------------|-----|
 |"show_splashscreen"|Boolean|enables/disables the splashscreen|
-|"logo_path"|String|relative path to splashscreen logo, leave blank to hide. default size: 128px x 128px |
+|"logo_path"|String|relative path to splashscreen logo, leave blank to hide, default size: 128px x 128px |
 |"text"|String|text or html to be displayed, default "Loading"|
 
 ###6.3 Top Navigation
@@ -291,14 +292,14 @@ Description:
 | Name        | Type          | Description  |
 |-------------|-------------|-----|
 |  "title"|String|title of this backend, leave blank to hide|
-|  "logo_path"|String|relative path to navbar logo, leave blank to hide. Size: 32px x 32px|
+|  "logo_path"|String|relative path to navbar logo, leave blank to hide, size: 32px x 32px|
 |  "show_local_ip"|Boolean|set to TRUE to show local IP
-|  "show_public_ip"|Boolean|set to TRUE to show public IP of your network. Makes request to: https://api.ipify.org
+|  "show_public_ip"|Boolean|set to TRUE to show public IP of your network, makes request to: https://api.ipify.org
 
 
 ####6.3.2 Top Navbar Links
 
-The navigation links can be simple links ore dropdowns.
+Navigation links can be simple links or dropdowns.
 
 Saved in:
 
@@ -311,7 +312,7 @@ Default settings:
 ```
 $config["navbar"]["links"] = [
     0 => [
-        "name" => "Systeminfo",
+        "name" => "System Info",
         "url" => "?c=localadmin&m=systeminfo",
         "target" => "_self",
     ],
@@ -348,8 +349,8 @@ Description:
 |"name"|String|link name|
 |"url"|String|where to jump|
 |"target"|String|where to show, if empty "_blank" is used|
-|"dropdown"|Array|Indicates a dropdown|
-|"divider"|Boolean|set to TRUE to show a divider (separator line) below the link
+|"dropdown"|Array|indicates a dropdown|
+|"divider"|Boolean|set to TRUE to show a divider (separator line) below a link in dropdown
 
 
 ###6.4 All Projects
@@ -372,7 +373,7 @@ Description:
 
 | Name        | Type          | Description  |
 |-------------|-------------|-----|
-|"hide_if_contains"|String|If you want to hide projects (directories) which name contains a word or phrase, this is the right place.
+|"hide_if_contains"|String| If you want to hide projects (directories) which name contains a word or phrase, this is the right place to do it.  
 
 ###6.5 Project Groups
 
@@ -386,21 +387,70 @@ Saved in:
 $config["project_group"]
 ```
 
-Absolute minimum setup, which lists all directories is:
+Basic setup, which lists all directories. Use this one as a template and extend it to your needs:
 
 ```
 $config["project_group"][0] = [
-    "directory" => "/absolute/path/to/webroot/mobile-apps/",
-    "matching_path" => "/"
+    "name" => "",
+    "directory" => "/absolute/path/to/webroot/",
+    "matching_path" => "/",
+    "has_subdomains" => FALSE,
+    "columns" => 2,
+    "button_groups_in_two_rows" => FALSE,
+    "hidden_sites" => [],
+    "title_buttons" => [],
+    "local_button_group" => [],
+    "remote_button_group" => []
 ];
 ```
 
-###6.6 Optional Settings for each Project
+Showing two project groups:
+
+```
+$config["project_group"][0] = [
+    "directory" => "/absolute/path/to/webroot/",
+    "matching_path" => "/", ...
+];
+
+$config["project_group"][1] = [
+    "directory" => "/absolute/path/to/webroot/mobile-apps/another_path/",
+    "matching_path" => "/", ...
+];
+```
+
+Description:
+
+| Name        | Type          | Description  |
+|-------------|-------------|-----|
+| "name" | String | display name of project group, if empty directory name will used  |
+| "directory" | String | absolute path to your webroot/projectfolder, read [How it works](#5-how-it-works)   |
+| "matching_path" | String | the path matching condition for showing folders/projects, read [How it works](#5-how-it-works)  |
+| "has_subdomains| Boolean | set to true, if you have setup your vhost to use subdomains in the path of your project group  |
+| "columns" | Integer | number of projects to show in one row, can be 1, 2, 3 or 4  |
+| "button_groups_in_two_rows" | Boolean | set to true, if you want to show the local-/remote-button-group in two rows.  |
+| "hidden_sites" | Array | list here all sites by their directory names, which you don't want to see in your project group  |
+| "title_buttons" | Array | setup for buttons, shown right of the project group name, see [6.7 Buttons](#67-buttons)  |
+| "local_button_group" | Array |   |
+| "remote_button_group" | Array |   |
+
+
+
+
+
+Default setup, read [4. Get started](#4-get-started):
+
+
+
+
+
+
+###6.6 Settings for each Project
 
 ```
 $config["site_options"]
 ```
 
+###6.7 Buttons
 
 ##7. URL Launcher
 

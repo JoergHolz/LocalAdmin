@@ -41,3 +41,16 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+.idea/modules.xml
+
+.idea/misc.xml
+
+.idea/LocalAdmin.iml
+
+.idea/encodings.xml
+
+.idea/copyright/profiles_settings.xml
+
+.idea/composerJson.xml
+
+.idea/.name
