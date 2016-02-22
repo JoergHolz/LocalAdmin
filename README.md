@@ -21,19 +21,19 @@ I did some development and the result is LocalAdmin - get in touch with it:
 
 [4. Get started](#4-get-started)
 
-[5. How it works](#5-how-it-works)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.1 Practical Example](#51-practical-example)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.2 Advanced Example](#52-advanced-example)
+[5. How it works](#5-how-it-works)   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.1 Practical Example](#51-practical-example)   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.2 Advanced Example](#52-advanced-example)   
 
 [6. Settings](#6-settings)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.1 General Behavior of LocalAdmin](#61-general-behavior-of-localadmin)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.2 Splashscreen](#62-splashscreen)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3 Top Navigation](#63-top-navigation)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3.1 Top Navbar General Settings](#631-top-navbar-general-settings)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3.2 Top Navbar Links](#632-top-navbar-links)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.4 All Projects](#64-all-projects)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.5 Project Groups](#65-project-groups)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.6 Optional Settings for each Project](#66-optional-settings-for-each-project)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.1 General Behavior of LocalAdmin](#61-general-behavior-of-localadmin)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.2 Splashscreen](#62-splashscreen)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3 Top Navigation](#63-top-navigation)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3.1 Top Navbar General Settings](#631-top-navbar-general-settings)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3.2 Top Navbar Links](#632-top-navbar-links)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.4 All Projects](#64-all-projects)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.5 Project Groups](#65-project-groups)   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.6 Optional Settings for each Project](#66-optional-settings-for-each-project)   
 
 [7. URL Launcher](#7-url-launcher)
 
