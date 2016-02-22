@@ -1,21 +1,23 @@
 #LocalAdmin - a webbased Admin Tool
 
-Weeks ago I deleted Apples Server.app (I had to much trouble to set up vhosts.). I setup my own server and was looking for a project administration tool.
+Weeks ago I deleted Apples Server.app (I had to much trouble to set up vhosts.). I setup my own server and was looking for a project administration tool to have things in one place?
 
 I found [Localhomepage](http://cmall.github.io/LocalHomePage/), a great idea and nice tool from [Chris Mallinson](https://mallinson.ca). I decided to pick up the idea and bring some automation and developer things into it.
 
-The result is LocalAdmin, here a real life screenshot:
+Wouldn't it be nice to have one place, where you have all your project links, starting your IDE/SDK, jump to the project directory, open files, open developer tools, iOS Simulator, …
+
+I did some development and the result is LocalAdmin::
 
  ![LocalAdmin dialog](doc_images/localadmin.png) 
 
 ## Who should use LocalAdmin?
-Webdevelopers, Back- and FrontEnd-People, Cordova- and Phonegap Developers, Automation Developers.
+Webdevelopers, Back- and Frontend-People, Cordova- and Phonegap Developers, Automation Developers and every one who wants to use a local webdriven folder and document tool.
 
 ## Requirements
 
 – local web server
 
-– local TLD (see below)
+– local wildcard Domain
 
 – PHP >= 5.6, works great with PHP 7
 
@@ -38,27 +40,22 @@ Webdevelopers, Back- and FrontEnd-People, Cordova- and Phonegap Developers, Auto
 
 3. Move it to the root of your webserver where all your other project are
 
-4. Depending on the settings of your vhost, there may be a need of some changes. The document root of LocalAdmin is /htdocs. If you want to move the folder htdocs somewhere else, read below [Extending LocalAdmin](#extending) 
+4. Depending on the settings of your vhost, there may be a need of some changes. The document root of LocalAdmin is /htdocs. If you want to move the folder htdocs somewhere else, read below [Extending LocalAdmin](#extending-localadmin) 
 
 5. Open settings.php in localadmin/application/config and find the following configurations:
 
+    Set your local wildcard domain in "tld":
 
-Set your local wildcard domain in "tld":
-   
-```
-   $config["general"] = [
-       "tld" => "dev",
-```
-   
+        $config["general"] = [
+               "tld" => "dev",
 
     Set the absolute path to your web root in "directory":
 
    
-```
-   $config["project_group"][0] = [
-           "name" => "My Projects",
-          "directory" => "/absolute/path/to/webroot/",
-```
+        $config["project_group"][0] = [
+                "name" => "My Projects",
+                "directory" => "/absolute/path/to/webroot/",
+
            
     
     Example: "/Users/your_username/Sites/" **(Don't forget the slashes!)**
@@ -69,8 +66,7 @@ Set your local wildcard domain in "tld":
 
 8. You are done!
 
-
-## How it works
+##How it works
 
 LocalAdmin lists all folders (No files!), which are in a given directory **AND** the content of these folders matches your "matching_path". Some examples:
 
@@ -97,7 +93,7 @@ $config["project_group"][0] = [
         "matching_path" => "/htdocs/www/",     
 ```
 
-### Practical Example
+###Practical Example
 
 Let's say you have the following folder structure in your webserver root:
 
@@ -164,9 +160,9 @@ $config["project_group"][0] = [
         "matching_path" => "/documents/",
 ``` 
 
-This would lists: miller-company and my_web3.
+This would list: miller-company and my_web3
 
-## Settings
+##Settings
 
 You find all settings in the file application/config/settings.php. All settings are stored in an array called $config, and grouped into:
 
@@ -196,7 +192,7 @@ Description:
 | ------------- |-------------| -----|
 | "tld"      | String | Name of your local wildcard TLD, default "dev". If you don't use a wildcard TLD, LocalAdmin will not work properly out of the box.
 | "show_tooltips"      | Boolean      | set to TRUE to show tooltips. |
-| "allow_shell_scripts" | Boolean      | enables support for shell scripts, default FALSE. **Before enabling, read the sections Shell Scripts and Security.** |
+| "allow_shell_scripts" | Boolean      | enables support for shell scripts, default FALSE. **Before enabling, read the sections [Shell Scripts](#shell-scripts) and [Security](#security).** |
 | "button_groups_in_two_rows"|Boolean|how the button groups will be shown: FALSE (Default) in one row, TRUE in two rows. This behavior you can also setup in the project group settings and for every single project individual.
 |"button_groups_in_two_rows_at"|Integer|the window width in pixel, when the button groups will shown in two rows. Good for small browser windows.
 
@@ -341,12 +337,27 @@ Description:
 
 | Name        | Type          | Description  |
 |-------------|-------------|-----|
-|"hide_if_contains"|String|link name|
+|"hide_if_contains"|String|If you want to hide projects (directories) which name contains a word or phrase, this is the right place.
 
 ###Project Groups
 
+A project group is a collection of directories in specific path (setting: "directory") and a matching structure (setting: "matching_path").
+
+Before you start to make your settings, you should read [How it works](#how-it-works).
+
+Saved in:
+
 ```
 $config["project_group"]
+```
+
+Absolute minimum setup, which lists all directories is:
+
+```
+$config["project_group"][0] = [
+    "directory" => "/absolute/path/to/webroot/mobile-apps/",
+    "matching_path" => "/"
+];
 ```
 
 ###Optional Settings for every Project
@@ -360,6 +371,7 @@ $config["site_options"]
 
 ##Security
 
+##Advanced Use Cases
 
 ## <a name="extending">Extending LocalAdmin</a>
 change of htdocs
