@@ -53,7 +53,7 @@ Webdevelopers, Back- and Frontend-People, Cordova- and Phonegap Developers, Auto
 
 – local web server
 
-– local wildcard Domain
+– local wildcard domain (tld)
 
 – PHP >= 5.6, works great with PHP 7
 
@@ -76,7 +76,7 @@ Webdevelopers, Back- and Frontend-People, Cordova- and Phonegap Developers, Auto
 
 3. Move it to the root of your webserver where all your other project are
 
-4. Depending on the settings of your vhost, there may be a need of some changes. The document root of LocalAdmin is /htdocs. If you want to move the folder htdocs somewhere else, read below [Extending LocalAdmin](#11-extending-localadmin) 
+4. Depending on your vhost settings, there may be a need of some changes. The document root of LocalAdmin is /htdocs. If you want to move the folder htdocs somewhere else, read below [Extending LocalAdmin](#11-extending-localadmin) 
 
 5. Open settings.php in localadmin/application/config and find the following configurations:
 
@@ -233,9 +233,9 @@ $config["general"] = [
 
 Description:
 
-| Name        | Type          | Description  |
+| Key        | Type          | Description  |
 | ------------- |-------------| -----|
-| "tld"      | String | name of your local wildcard TLD, default "dev". If you don't use a wildcard TLD, LocalAdmin will not work properly out of the box.
+| "tld"      | String | name of your local wildcard TLD, default "dev". **If you don't use a wildcard TLD, LocalAdmin will not work properly out of the box.**
 | "show_tooltips"      | Boolean      | set to TRUE to show tooltips |
 | "allow_shell_scripts" | Boolean      | enables support for shell scripts, default FALSE. **Before enabling, read the sections [Shell Scripts](#shell-scripts) and [Security](#security).** |
 | "button_groups_in_two_rows"|Boolean|how the button groups will be shown: FALSE (Default) in one row, TRUE in two rows. This setting overrides the same called settings in project groups and settings for each project.
@@ -263,7 +263,7 @@ $config["splashscreen"] = [
 
 Description:
 
-| Name        | Type          | Description  |
+| Key        | Type          | Description  |
 |-------------|-------------|-----|
 |"show_splashscreen"|Boolean|enables/disables the splashscreen|
 |"logo_path"|String|relative path to splashscreen logo, leave blank to hide, default size: 128px x 128px |
@@ -298,7 +298,7 @@ $config["navbar"]["general"] = [
 
 Description:
 
-| Name        | Type          | Description  |
+| Key        | Type          | Description  |
 |-------------|-------------|-----|
 |  "title"|String|title of this backend, leave blank to hide|
 |  "logo_path"|String|relative path to navbar logo, leave blank to hide, size: 32px x 32px|
@@ -353,7 +353,7 @@ $config["navbar"]["links"] = [
 
 Description:
 
-| Name        | Type          | Description  |
+| Key        | Type          | Description  |
 |-------------|-------------|-----|
 |"name"|String|link name|
 |"url"|String|where to jump|
@@ -386,7 +386,7 @@ Description:
 
 ###6.5 Project Groups
 
-A project group is a collection of directories in specific path (setting: "directory") and a matching structure (setting: "matching_path").
+A project group is a collection of directories in a specific path (setting: "directory") and a matching structure (setting: "matching_path").
 
 Before you start to make your settings, you should read [How it works](#5-how-it-works).
 
@@ -423,7 +423,7 @@ $config["project_group"][0] = [
 ];
 
 $config["project_group"][1] = [
-    "directory" => "/absolute/path/to/webroot/mobile-apps/another_path/",
+    "directory" => "/absolute/path/to/webroot/another_path/",
     "matching_path" => "/", 
     ...
 ];
@@ -459,17 +459,24 @@ $config["site_options"]
 ```
 
 ###6.7 Buttons
+Button are grouped in button groups and you can define them at these places:
+
+
 
 ##7. URL Launcher
 
 ##8. Shell Scripts
 
 ##9. Security
+You can do some powerful task with LocalAdmin - therefor harden your enviroment. On default Localadmin has a .htaccess in htdocs, which limits the permission only to the local machine.
 
+If you don't use local domains
+https://perishablepress.com/htaccess-password-protection-tricks/
 ##10. Advanced Use Cases
 
 ##11. Extending LocalAdmin
 
+LocalAdmin is based on [Codeigniter](https://www.codeigniter.com).
 ###11.1 Moving htdocs
 If you need or want to change the location of htdocs, then you have to change these two setting in index.php:
 
@@ -482,7 +489,7 @@ $application_folder = '../application';
 ```
 
 ###11.2 Creating your own Buttons
-Every button type has a corresponding private function, which is located in application/controllers/LocalAdmin.php 
+Every button type has a corresponding private function, which is located in application/controllers/LocalAdmin.php.
 
 If you define a new type «my_button»:
  
@@ -506,6 +513,7 @@ You need the private function «_my_button» in application/controllers/LocalAdm
         // create your button as <a href='…>label</a> and return it
     }
 ```
+The function has to return HTML, see the other button functions in application/controllers/LocalAdmin.php.
 
 $button contains:
 ```
@@ -520,7 +528,7 @@ $button contains:
 [tooltip] => 
 ```
 
-How to create Bootstrap Buttons: (http://getbootstrap.com/css/#buttons) Remeber to return <a> buttons otherwise you have to write same CSS.
+How to create Bootstrap Buttons: [Buttons](http://getbootstrap.com/css/#buttons). Remember to return \<a> buttons otherwise you have to write same CSS and urlencode your links.
 
 ##12. History
 
@@ -528,27 +536,22 @@ Version: 1.0
 
 ##13. Credits
 
-Christa
-
+Christa  
 [Chris Mallinson](https://mallinson.ca)
 
 
 ##14. Links
 
-[Codeigniter](http://www.codeigniter.com)
-
-[Bootstrap](http://getbootstrap.com)
-
-[Localhomepage](http://cmall.github.io/LocalHomePage/)
-
-[ipify](https://www.ipify.org)
+[Codeigniter](http://www.codeigniter.com)  
+[Bootstrap](http://getbootstrap.com)  
+[Localhomepage](http://cmall.github.io/LocalHomePage/)  
+[ipify](https://www.ipify.org)  
 
 ##15. License
 
 MIT License (MIT)
 
 Copyright (c) 2016 Jörg Holz | [https://www.workflow-management.net](https://www.workflow-management.net)
-
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
