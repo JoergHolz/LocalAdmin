@@ -1,36 +1,30 @@
-#LocalAdmin - Having Things in one Place
+#LocalAdmin
 
-Weeks ago I deleted Apples Server.app (I had to much trouble to set up vhosts.). I did my own server and was looking for a project administration tool.
+####A fully customizable admin tool for webbased project, Cordova apps and automation tasks.####
 
-I found [Localhomepage](http://cmall.github.io/LocalHomePage/), a great idea and nice tool from [Chris Mallinson](https://mallinson.ca). I decided to pick up the idea and bring some automation and developer things into it.
 
-Wouldn't it be nice to have one place, where you have all your project links, starting your IDE/SDK, jump to the project directory, open the project in different browsers, open files, open developer tools, iOS Simulator, …?
-
-I did some development and the result is LocalAdmin - get in touch with it:
-
+---
 ![LocalAdmin dialog](doc_images/localadmin.png) 
 
 ---
 ##Table of Contents
 
-[1. Screenshots](#1-screenshots)   
-[2. Who should use LocalAdmin?](#2-who-should-use-localadmin)   
-[3. Requirements](#3-requirements)   
-[4. Get started](#4-get-started)   
-[5. How it works](#5-how-it-works)   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.1 Practical Example](#51-practical-example)   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[5.2 Advanced Example](#52-advanced-example)   
-[6. Settings](#6-settings)   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.1 General Behavior of LocalAdmin](#61-general-behavior-of-localadmin)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.2 Splashscreen](#62-splashscreen)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3 Top Navigation](#63-top-navigation)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3.1 Top Navbar General Settings](#631-top-navbar-general-settings)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.3.2 Top Navbar Links](#632-top-navbar-links)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.4 All Projects](#64-all-projects)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.5 Project Groups](#65-project-groups)   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.6 Settings for each Project](#66-settings-for-each-project)   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.7 Buttons](#67-buttons)
-[7. URL Launcher](#7-url-launcher)   
+[1. Requirements](#1-requirements)   
+[2. Get started](#2-get-started)   
+[3. How it works](#3-how-it-works)   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 Practical Example](#31-practical-example)   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Advanced Example](#32-advanced-example)   
+[4. Settings](#6-settings)   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.1 General Behavior of LocalAdmin](#41-general-behavior-of-localadmin)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.2 Splashscreen](#42-splashscreen)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.3 Top Navigation](#43-top-navigation)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.3.1 Top Navbar General Settings](#431-top-navbar-general-settings)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.3.2 Top Navbar Links](#432-top-navbar-links)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.4 All Projects](#44-all-projects)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.5 Project Groups](#45-project-groups)   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.6 Settings for each Project](#46-settings-for-each-project)   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.7 Buttons](#47-buttons)
+[5. URL Launcher](#7-url-launcher)   
 [8. Shell Scripts](#8-shell-scripts)   
 [9. Security](#9-security)   
 [10. Advanced Use Cases](#10-advanced-use-cases)   
@@ -43,24 +37,18 @@ I did some development and the result is LocalAdmin - get in touch with it:
 
 
 
-##1. Screenshots
-![LocalAdmin dialog](doc_images/localadmin.png) 
+##1. Requirements
 
-##2. Who should use LocalAdmin?
-Webdevelopers, Back- and Frontend-People, Cordova- and Phonegap Developers, Automation Developers and every one who wants to use a local webdriven folder and document tool.
+– Local Web Server
 
-##3. Requirements
-
-– local web server
-
-– local wildcard domain (tld)
+– Local Wildcard Domain (tld)
 
 – PHP >= 5.6, works great with PHP 7
 
 – For best experience: [LocalAdmin-URL-Scheme-Launcher](https://github.com/JoergHolz/LocalAdmin-URL-Scheme-Launcher) (OS X only)
 
 
-##4. Get started
+##2. Get started
 
 1. If you have not setup a local webserver, PHP and a local wildcard domain, then do so. Here are some links:
 
@@ -72,7 +60,7 @@ Webdevelopers, Back- and Frontend-People, Cordova- and Phonegap Developers, Auto
      Linux: [Apache 2.x on Unix systems](http://php.net/manual/en/install.windows.apache2.php)  
      Linux Wildcard Domain: [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html)
 
-2. Download and unzip localadmin
+2. Download and unzip LocalAdmin
 
 3. Move it to the root of your webserver where all your other project are
 
