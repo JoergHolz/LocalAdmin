@@ -1,7 +1,8 @@
 #LocalAdmin
 
-####A fully customizable admin tool for webbased project, Cordova apps and automation tasks.####
+####A fully customizable admin tool for webbased projects, Cordova apps and automation tasks.####
 
+Open your project in different browsers, open developer tools, jump to the projects directory, open the project in your IDE/SDK, have a live preview, call external scripts, have predefined searches, … or create your own buttons and tasks.
 
 ---
 ![LocalAdmin dialog](doc_images/localadmin.png) 
@@ -34,19 +35,12 @@
 [14. Links](#14-links)   
 [15. License](#15-license)   
 
-
-
-
 ##1. Requirements
 
 – Local Web Server
-
 – Local Wildcard Domain (tld)
-
 – PHP >= 5.6, works great with PHP 7
-
 – For best experience: [LocalAdmin-URL-Scheme-Launcher](https://github.com/JoergHolz/LocalAdmin-URL-Scheme-Launcher) (OS X only)
-
 
 ##2. Get started
 
@@ -96,7 +90,7 @@
 
 LocalAdmin lists all folders (No files!), which are in a given directory **AND** the content of these folders matches your "matching_path". Some examples:
 
-Lists everything in your webroot. This is the default.
+**Lists everything in your webroot:**
 
 ```
 $config["project_group"][0] = [
@@ -104,7 +98,7 @@ $config["project_group"][0] = [
         "matching_path" => "/",
         ...
 ```
- Lists only folders, which have inside a www folder:
+**Lists only folders, which have inside a www folder:**
  
 ```     
 $config["project_group"][0] = [
@@ -113,7 +107,7 @@ $config["project_group"][0] = [
         ...
 ```
  
-Lists only folders, which have inside a www/htdocs folder (This is the standard structure I use in my webprojects):
+**Lists only folders, which have inside a www/htdocs folder:**
 
 ```
 $config["project_group"][0] = [
@@ -419,7 +413,7 @@ $config["project_group"][1] = [
 
 Description:
 
-| Name        | Type          | Description  |
+| Key       | Type          | Description  |
 |-------------|-------------|-----|
 | "name" | String | display name of project group, if empty directory name will used  |
 | "directory" | String | absolute path to your webroot/projectfolder, read [How it works](#5-how-it-works)   |
@@ -447,7 +441,79 @@ $config["site_options"]
 ```
 
 ###6.7 Buttons
-Button are grouped in button groups and you can define them at these places:
+Buttons are grouped in button groups and could be placed right of the project group title (setting: "title_button_group"), as a local button group (setting: "local_button_group") or remote button group (setting: "remote_button_group") in the project panel.
+
+You can define buttons in the project group settings:
+
+```
+$config["project_group"][0] = [
+    "title_button_group" => [],
+    "local_button_group" => [
+        "title" => "Local:",
+        "buttons" => []
+
+    ],
+    "remote_button_group" => [
+        "title" => "Remote:",
+        "buttons" => []
+    ]
+]
+```
+
+For each project you can append local or remote buttons:
+
+```
+$config["site_options"]["your_directory_name"] = [
+   "local_button_group" => [
+        "buttons" => [
+        ]
+    ],
+    "remote_button_group" => [
+        "buttons" => [
+        ]
+    ]
+];
+```
+
+
+###6.8 Button Types
+
+**show_path**
+
+Shows path of project group, number of projects and number of hidden projects.
+
+Usable: title_button_group
+```
+0 => [
+            "type" => "show_path"
+        ]
+```
+
+---
+**show_hidden_projects**
+
+Dropdown which lists hidden projects. Only visible when there are hidden projects.
+
+Usable: title_button_group
+```
+0 => [
+            "type" => "show_hidden_projects"
+        ]
+```
+
+---
+**url**
+
+Dropdown which lists hidden projects. Only visible when there are hidden projects.
+
+Usable: title_button_group, local_button_group, remote_button_group
+```
+0 => [
+            "type" => "show_hidden_projects"
+        ]
+```
+
+---
 
 
 
