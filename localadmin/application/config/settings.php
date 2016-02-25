@@ -131,7 +131,6 @@ $config["all_projects"] = [
 | -------------------------------------------------------------------
 */
 
-
 $config["project_group"][0] = [
     "name" => "Projects",
     "directory" => "/absolute/path/to/webroot/",
@@ -270,6 +269,11 @@ $config["project_group"][0] = [
     ]
 ];
 
+/*
+| -------------------------------------------------------------------
+|  Settings for each Project
+| -------------------------------------------------------------------
+*/
 
 $config["site_options"]["your_directory_name"] = [
     "name" => "My Project 1",
