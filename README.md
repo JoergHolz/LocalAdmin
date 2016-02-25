@@ -1,6 +1,6 @@
 #LocalAdmin
 
-####A fully customizable admin tool for webbased projects, Cordova apps and automation tasks####
+####A fully customizable admin tool for web based projects, Cordova apps and automation tasks####
 
 Open your project in different browsers, open developer tools, jump to the projects directory, open the project in your IDE/SDK, have a live preview, call external scripts, have predefined searches, … or create your own buttons and tasks.
 
