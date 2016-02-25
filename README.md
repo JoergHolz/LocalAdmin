@@ -37,10 +37,10 @@ Open your project in different browsers, open developer tools, jump to the proje
 
 ##1. Requirements
 
-– Local Web Server   
-– Local Wildcard Domain (tld)   
-– PHP >= 5.6, works great with PHP 7   
-– For best experience: [LocalAdmin-URL-Scheme-Launcher](https://github.com/JoergHolz/LocalAdmin-URL-Scheme-Launcher) (OS X only)   
+– Local Web Server     
+– Local Wildcard Domain (tld)     
+– PHP >= 5.6, works great with PHP 7     
+– For best experience: [LocalAdmin-URL-Scheme-Launcher](https://github.com/JoergHolz/LocalAdmin-URL-Scheme-Launcher) (OS X 
 
 ##2. Get started
 
@@ -213,14 +213,12 @@ $config["general"] = [
 ];
 ```
 
-Description:
-
 | Key        | Type          | Description  |
 | ------------- |-------------| -----|
 | "tld"      | String | name of your local wildcard TLD, default "dev". **If you don't use a wildcard TLD, LocalAdmin will not work properly out of the box.**
 | "show_tooltips"      | Boolean      | set to TRUE to show tooltips |
 | "allow_shell_scripts" | Boolean      | enables support for shell scripts, default FALSE. **Before enabling, read the sections [Shell Scripts](#shell-scripts) and [Security](#security).** |
-| "button_groups_in_two_rows"|Boolean|how the button groups will be shown: FALSE (Default) in one row, TRUE in two rows. This setting overrides the same called settings in project groups and settings for each project.
+| "button_groups_in_two_rows"|Boolean|how the button groups will be shown: FALSE in one row, TRUE in two rows. This setting overrides the same called settings in project groups and settings for each project.
 |"button_groups_in_two_rows_at"|Integer|the window width in pixel, when the button groups will shown in two rows. Good for small browser windows.
 
 
@@ -242,8 +240,6 @@ $config["splashscreen"] = [
     "text" => "Loading"
 ];
 ```
-
-Description:
 
 | Key        | Type          | Description  |
 |-------------|-------------|-----|
@@ -277,8 +273,6 @@ $config["navbar"]["general"] = [
     "show_public_ip" => TRUE
 ];
 ```
-
-Description:
 
 | Key        | Type          | Description  |
 |-------------|-------------|-----|
@@ -333,8 +327,6 @@ $config["navbar"]["links"] = [
 ```
 
 
-Description:
-
 | Key        | Type          | Description  |
 |-------------|-------------|-----|
 |"name"|String|link name|
@@ -359,8 +351,6 @@ $config["all_projects"] = [
 ];
 ```
 
-
-Description:
 
 | Key       | Type          | Description  |
 |-------------|-------------|-----|
@@ -411,8 +401,6 @@ $config["project_group"][1] = [
 ];
 ```
 
-Description:
-
 | Key       | Type          | Description  |
 |-------------|-------------|-----|
 | "name" | String | display name of project group, if empty directory name will used  |
@@ -428,10 +416,6 @@ Description:
 
 
 Default project group setup in settings.php, read [4. Get started](#4-get-started):
-
-
-
-
 
 
 ###6.6 Settings for each Project
@@ -482,8 +466,8 @@ Properties you can use in every button type and in dropdowns too:
 
 | Key       | Type          | Description  |
 |-------------|-------------|-----|
-| "platform" |String| the button will displayed only on this platform, leave blank for all platforms
-| "browser" | String | the button will displayed only in this browser, leave blank for all browsers
+| "platform" |String| button will be displayed only on this platform, leave blank for all platforms
+| "browser" | String | button will be displayed only in this browser, leave blank for all browsers
 
 To get the values, which LocalAdmin uses to the detect the agent, click on the info button right of the top navbar.
 
@@ -533,8 +517,6 @@ Usable: title_button_group, local_button_group, remote_button_group
 
 ```
 
-Description:
-
 | Key       | Type          | Description  |
 |-------------|-------------|-----|
 | "name" |String| display name of dropdown
@@ -542,7 +524,7 @@ Description:
 
 ---
 
-**"url"**
+**"show_in_browser"**
 
 Shows project or URL in new tab.
 
@@ -556,11 +538,37 @@ Usable: title_button_group, local_button_group, remote_button_group
            ]
 ```
 
-Description:
-
 | Key       | Type          | Description  |
 |-------------|-------------|-----|
 | "url" |String| href link, leave blank to show local project
+
+---
+
+
+**"url"**
+
+Shows project or URL in new tab.
+
+The difference to "show_in_browser" is, that you can here provide a label.
+
+Usable: title_button_group, local_button_group, remote_button_group
+```
+0 => [
+                "platform" => "",
+                "browser" => "",
+                "type" => "url",
+                "label" => "",
+                "url" => "",
+                "tooltip" => ""
+           ]
+```
+
+
+| Key       | Type          | Description  |
+|-------------|-------------|-----|
+| "label" |String| button label |
+| "url" |String| href link |
+| "tooltip" |String| tooltip to display |
 
 ---
 
@@ -579,8 +587,6 @@ Usable: title_button_group, local_button_group, remote_button_group
                 "url" => ""
            ]
 ```
-
-Description:
 
 | Key       | Type          | Description  |
 |-------------|-------------|-----|
@@ -604,8 +610,6 @@ Usable: title_button_group, local_button_group, remote_button_group
            ]
 ```
 
-Description:
-
 | Key       | Type          | Description  |
 |-------------|-------------|-----|
 | "url" |String| href link, leave blank to show local project
@@ -627,8 +631,6 @@ Usable: title_button_group, local_button_group, remote_button_group
            ]
 ```
 
-Description:
-
 | Key       | Type          | Description  |
 |-------------|-------------|-----|
 | "search_for" |String| term to search
@@ -648,8 +650,6 @@ Usable: title_button_group, local_button_group, remote_button_group
                 "item" => ""
            ]
 ```
-
-Description:
 
 | Key       | Type          | Description  |
 |-------------|-------------|-----|
@@ -682,8 +682,6 @@ Usable: title_button_group, local_button_group, remote_button_group
                 "parameters" => ""
            ]
 ```
-
-Description:
 
 | Key       | Type          | Description  |
 |-------------|-------------|-----|
@@ -725,8 +723,6 @@ Usable: title_button_group, local_button_group, remote_button_group
                 "tooltip" => ""
            ]
 ```
-
-Description:
 
 | Key       | Type          | Description  |
 |-------------|-------------|-----|
