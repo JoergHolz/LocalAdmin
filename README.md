@@ -2,7 +2,9 @@
 
 ####A fully customizable admin tool for webbased projects, Cordova apps and automation tasks####
 
-Open your project in different browsers, open developer tools, jump to the projects directory, open the project in your IDE/SDK, have a live preview, call external scripts, have predefined searches, … or create your own buttons and tasks
+Open your project in different browsers, open developer tools, jump to the projects directory, open the project in your IDE/SDK, have a live preview, call external scripts, have predefined searches, … or create your own buttons and tasks.
+
+LocalAdmin works in all modern browsers.
 
 ---
 ![LocalAdmin dialog](doc_images/localadmin.png) 
@@ -15,7 +17,7 @@ Open your project in different browsers, open developer tools, jump to the proje
 [3. How it works](#3-how-it-works)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.1 Practical Example](#31-practical-example)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3.2 Advanced Example](#32-advanced-example)   
-[4. Settings](#6-settings)   
+[4. Settings](#4-settings)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.1 General Behavior of LocalAdmin](#41-general-behavior-of-localadmin)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.2 Splashscreen](#42-splashscreen)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.3 Top Navigation](#43-top-navigation)  
@@ -25,15 +27,15 @@ Open your project in different browsers, open developer tools, jump to the proje
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.5 Project Groups](#45-project-groups)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.6 Settings for each Project](#46-settings-for-each-project)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.7 Buttons](#47-buttons)
-[5. URL Launcher](#7-url-launcher)   
-[8. Shell Scripts](#8-shell-scripts)   
-[9. Security](#9-security)   
-[10. Advanced Use Cases](#10-advanced-use-cases)   
-[11. Extending LocalAdmin](#11-extending-localadmin)   
-[12. History](#12-history)   
-[13. Credits](#13-credits)   
-[14. Links](#14-links)   
-[15. License](#15-license)   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.8 Button Types](#48-button-types)
+[5. Security](#7-security)   
+[6. Extending LocalAdmin](#7-extending-localadmin)   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.1 Moving htdocs](#61-moving-htdocs)   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.2 Creating your own Buttons](#62-creating-your-own-buttons)   
+[7. About](#7-about)   
+[8. Credits](#8-credits)   
+[9. Links](#9-links)   
+[10. License](#10-license)   
 
 ##1. Requirements
 
@@ -86,7 +88,7 @@ Open your project in different browsers, open developer tools, jump to the proje
 
 8. You are done!
 
-##5. How it works
+##3. How it works
 
 LocalAdmin lists all folders (No files!), which are in a given directory **AND** the content of these folders matches your "matching_path". Some examples:
 
@@ -116,7 +118,7 @@ $config["project_group"][0] = [
         ...
 ```
 
-###5.1 Practical Example
+###3.1 Practical Example
 
 Let's say you have the following folder structure in your webserver root:
 
@@ -177,7 +179,7 @@ The second setting lists the folders backend, frontend and shop **but not** the 
 The third setting lists my_web1 … my_web4 **but not** the folders mobile-apps and miller-company, because … right, they don't have a htdocs in the first level.
 
 
-####5.2 Advanced Example
+####3.2 Advanced Example
 Lets take the above example an say we want to have an extra group listed in LocalAdmin which contains all projects having a document folder inside:
  
 ```
@@ -189,11 +191,11 @@ $config["project_group"][0] = [
 
 This would list: miller-company and my_web3
 
-##6 Settings
+##4 Settings
 
 You find all settings in the file application/config/settings.php. All settings are stored in an array called $config and grouped into:
 
-###6.1 General Behavior of LocalAdmin
+###4.1 General Behavior of LocalAdmin
 
 Saved in:
 
@@ -222,7 +224,7 @@ $config["general"] = [
 |"button_groups_in_two_rows_at"|Integer|the window width in pixel, when the button groups will shown in two rows. Good for small browser windows.
 
 
-###6.2 Splashscreen
+###4.2 Splashscreen
 The splashscreen is the start screen of LocalAdmin. It prevents you to use LocalAdmin until it is fully loaded.
 
 Saved in:
@@ -247,7 +249,7 @@ $config["splashscreen"] = [
 |"logo_path"|String|relative path to splashscreen logo, leave blank to hide, default size: 128px x 128px |
 |"text"|String|text or html to be displayed, default "Loading"|
 
-###6.3 Top Navigation
+###4.3 Top Navigation
 
 Saved in:
 
@@ -255,7 +257,7 @@ Saved in:
 $config["navbar"]
 ```
 
-####6.3.1 Top Navbar General Settings
+####4.3.1 Top Navbar General Settings
 
 Saved in:
 
@@ -282,7 +284,7 @@ $config["navbar"]["general"] = [
 |  "show_public_ip"|Boolean|set to TRUE to show public IP of your network, makes request to: https://api.ipify.org
 
 
-####6.3.2 Top Navbar Links
+####4.3.2 Top Navbar Links
 
 Navigation links can be simple links or dropdowns.
 
@@ -336,7 +338,7 @@ $config["navbar"]["links"] = [
 |"divider"|Boolean|set to TRUE to show a divider (separator line) below a link in dropdown
 
 
-###6.4 All Projects
+###4.4 All Projects
 Saved in:
 
 ```
@@ -356,7 +358,7 @@ $config["all_projects"] = [
 |-------------|-------------|-----|
 |"hide_if_contains"|String| If you want to hide projects (directories) which name contains a word or phrase, this is the right place to do it.  
 
-###6.5 Project Groups
+###4.5 Project Groups
 
 A project group is a collection of directories in a specific path (setting: "directory") and a matching structure (setting: "matching_path").
 
@@ -408,6 +410,7 @@ $config["project_group"][1] = [
 | "matching_path" | String | the path matching condition for showing folders/projects, read [How it works](#5-how-it-works)  |
 | "has_subdomains| Boolean | set to true, if you have setup your vhost to use subdomains in the path of your project group  |
 | "columns" | Integer | number of projects to be shown in one row, can be 1, 2, 3 or 4  |
+| "icon" | String | path to icon, remarks see below  |
 | "button_groups_in_two_rows" | Boolean | set to true, if you want to show the local-/remote-button-group in two rows.  |
 | "hidden_sites" | Array | list here all sites by their directory names, which you don't want to see in your project group  |
 | "title_buttons" | Array | setup for buttons, shown right of the project group name, see [6.7 Buttons](#67-buttons)  |
@@ -417,14 +420,48 @@ $config["project_group"][1] = [
 
 Default project group setup in settings.php, read [4. Get started](#4-get-started):
 
+Icons: LocalAdmin tries to fetch a favicon.ico in the web root of your projects. If this fails, it tries to fetch an icon path from your site options, if this also fails, it tries to fetch a path from your project group settings.
+###4.6 Settings for each Project
 
-###6.6 Settings for each Project
+For every single project you can setup a name, an icon and you can add buttons.
+
+Saved in:
 
 ```
 $config["site_options"]
 ```
 
-###6.7 Buttons
+Basic setup, which lists all directories. Use this one as a template and extend it to your needs:
+
+```
+$config["site_options"]["your_directory_name"] = [
+    "name" => "My Project 1",
+    "icon" => ",
+    "button_groups_in_two_rows" => TRUE,
+    "local_button_group" => [],
+    "remote_button_group" => []
+    ];
+```
+
+
+| Key       | Type          | Description  |
+|-------------|-------------|-----|
+| "name" | String | display name of project, if empty directory name will used  |
+| "icon" | String | path to icon, remarks see below  |
+| "button_groups_in_two_rows" | Boolean | set to true, if you want to show the local-/remote-button-group in two rows.  |
+| "local_button_group" | Array | see [6.7 Buttons](#67-buttons)   |
+| "remote_button_group" | Array | see [6.7 Buttons](#67-buttons)  |
+
+**Attention:**   
+"your_directory_name" has to be changed to the real name of your project. If you use subdomains in a folder the name has to be like:
+```
+subdomain.domain e.g. blog.example
+```
+
+
+Icons: LocalAdmin tries to fetch a favicon.ico in the web root of your projects. If this fails, it tries to fetch an icon path from your site options, if this also fails, it tries to fetch a path from your project group settings.
+
+###4.7 Buttons
 Buttons are grouped in button groups and could be placed right of the project group title (setting: "title_button_group"), as a local button group (setting: "local_button_group") or remote button group (setting: "remote_button_group") in the project panel.
 
 You can define buttons in the project group settings:
@@ -460,7 +497,7 @@ $config["site_options"]["your_directory_name"] = [
 ```
 
 
-###6.8 Button Types
+###4.8 Button Types
 
 Properties you can use in every button type and in dropdowns too:
 
@@ -732,26 +769,14 @@ Usable: title_button_group, local_button_group, remote_button_group
 ---
 
 
-
-
-
-
-
-##7. URL Launcher
-
-##8. Shell Scripts
-
-##9. Security
+##5. Security
 You can do some powerful task with LocalAdmin - therefor harden your enviroment. On default Localadmin has a .htaccess in htdocs, which limits the permission only to the local machine.
 
-If you don't use local domains
-https://perishablepress.com/htaccess-password-protection-tricks/
-##10. Advanced Use Cases
-
-##11. Extending LocalAdmin
+##6. Extending LocalAdmin
 
 LocalAdmin is based on [Codeigniter](https://www.codeigniter.com).
-###11.1 Moving htdocs
+
+###6.1 Moving htdocs
 If you need or want to change the location of htdocs, then you have to change these two setting in index.php:
 
 ```
@@ -762,7 +787,7 @@ $system_path = '../system';
 $application_folder = '../application';
 ```
 
-###11.2 Creating your own Buttons
+###6.2 Creating your own Buttons
 Every button type has a corresponding private function, which is located in application/controllers/LocalAdmin.php.
 
 If you define a new type «my_button»:
@@ -804,24 +829,23 @@ $button contains:
 
 How to create Bootstrap Buttons: [Buttons](http://getbootstrap.com/css/#buttons). Remember to return \<a> buttons otherwise you have to write same CSS and urlencode your links.
 
-##12. History
+##7. About
+Weeks ago I found this great tool: [Localhomepage](http://cmall.github.io/LocalHomePage/) from [Chris Mallinson](https://mallinson.ca). I used it for several days and thought it would be a nice idea to have some more functions.
 
-Version: 1.0
-
-##13. Credits
+##8. Credits
 
 Christa  
 [Chris Mallinson](https://mallinson.ca)
 
 
-##14. Links
+##9. Links
 
 [Codeigniter](http://www.codeigniter.com)  
 [Bootstrap](http://getbootstrap.com)  
 [Localhomepage](http://cmall.github.io/LocalHomePage/)  
 [ipify](https://www.ipify.org)  
 
-##15. License
+##10. License
 
 MIT License (MIT)
 
