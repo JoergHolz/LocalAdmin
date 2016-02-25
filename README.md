@@ -1,8 +1,8 @@
 #LocalAdmin
 
-####A fully customizable admin tool for webbased projects, Cordova apps and automation tasks.####
+####A fully customizable admin tool for webbased projects, Cordova apps and automation tasks####
 
-Open your project in different browsers, open developer tools, jump to the projects directory, open the project in your IDE/SDK, have a live preview, call external scripts, have predefined searches, … or create your own buttons and tasks.
+Open your project in different browsers, open developer tools, jump to the projects directory, open the project in your IDE/SDK, have a live preview, call external scripts, have predefined searches, … or create your own buttons and tasks
 
 ---
 ![LocalAdmin dialog](doc_images/localadmin.png) 
@@ -37,14 +37,14 @@ Open your project in different browsers, open developer tools, jump to the proje
 
 ##1. Requirements
 
-– Local Web Server
-– Local Wildcard Domain (tld)
-– PHP >= 5.6, works great with PHP 7
-– For best experience: [LocalAdmin-URL-Scheme-Launcher](https://github.com/JoergHolz/LocalAdmin-URL-Scheme-Launcher) (OS X only)
+– Local Web Server   
+– Local Wildcard Domain (tld)   
+– PHP >= 5.6, works great with PHP 7   
+– For best experience: [LocalAdmin-URL-Scheme-Launcher](https://github.com/JoergHolz/LocalAdmin-URL-Scheme-Launcher) (OS X only)   
 
 ##2. Get started
 
-1. If you have not setup a local webserver, PHP and a local wildcard domain, then do so. Here are some links:
+1. If you have not setup a local webserver, PHP and a local wildcard domain, then start now. Here are some links:
 
      Mac OS X: [The Perfect Web Development Environment for Your New Mac](https://mallinson.ca/osx-web-development/)
    
@@ -362,7 +362,7 @@ $config["all_projects"] = [
 
 Description:
 
-| Name        | Type          | Description  |
+| Key       | Type          | Description  |
 |-------------|-------------|-----|
 |"hide_if_contains"|String| If you want to hide projects (directories) which name contains a word or phrase, this is the right place to do it.  
 
@@ -478,42 +478,266 @@ $config["site_options"]["your_directory_name"] = [
 
 ###6.8 Button Types
 
-**show_path**
+Properties you can use in every button type and in dropdowns too:
+
+| Key       | Type          | Description  |
+|-------------|-------------|-----|
+| "platform" |String| the button will displayed only on this platform, leave blank for all platforms
+| "browser" | String | the button will displayed only in this browser, leave blank for all browsers
+
+To get the values, which LocalAdmin uses to the detect the agent, click on the info button right of the top navbar.
+
+**"show_path"**
 
 Shows path of project group, number of projects and number of hidden projects.
 
 Usable: title_button_group
 ```
 0 => [
-            "type" => "show_path"
+             "platform" => "",
+             "browser" => "",
+             "type" => "show_path"
         ]
 ```
 
 ---
-**show_hidden_projects**
+
+**"show_hidden_projects"**
 
 Dropdown which lists hidden projects. Only visible when there are hidden projects.
 
 Usable: title_button_group
 ```
 0 => [
-            "type" => "show_hidden_projects"
+           "platform" => "",
+           "browser" => "",
+           "type" => "show_hidden_projects"
         ]
 ```
 
 ---
-**url**
 
-Dropdown which lists hidden projects. Only visible when there are hidden projects.
+**"dropdown"**
+
+Shows the buttons defined in «items» as a dropdown list.
 
 Usable: title_button_group, local_button_group, remote_button_group
 ```
 0 => [
-            "type" => "show_hidden_projects"
-        ]
+                "platform" => "",
+                "browser" => "",
+                "type" => "dropdown",
+                "name" => "Button Name",
+                "items" => []
+            ]
+
 ```
 
+Description:
+
+| Key       | Type          | Description  |
+|-------------|-------------|-----|
+| "name" |String| display name of dropdown
+| "items" | Array | buttons to be displayed in dropdown 
+
 ---
+
+**"url"**
+
+Shows project or URL in new tab.
+
+Usable: title_button_group, local_button_group, remote_button_group
+```
+0 => [
+                "platform" => "",
+                "browser" => "",
+                "type" => "show_in_browser",
+                "url" => ""
+           ]
+```
+
+Description:
+
+| Key       | Type          | Description  |
+|-------------|-------------|-----|
+| "url" |String| href link, leave blank to show local project
+
+---
+
+**"live_preview"**
+
+Shows project or URL as live preview in popup.
+
+**Live preview uses an iframe, so the site you want to see has to provide this function.**
+
+Usable: title_button_group, local_button_group, remote_button_group
+```
+0 => [
+                "platform" => "",
+                "browser" => "",
+                "type" => "live_preview",
+                "url" => ""
+           ]
+```
+
+Description:
+
+| Key       | Type          | Description  |
+|-------------|-------------|-----|
+| "url" |String| href link, leave blank to show local project
+
+---
+
+
+**"login"**
+
+Shows login in new tab.
+
+Usable: title_button_group, local_button_group, remote_button_group
+```
+0 => [
+                "platform" => "",
+                "browser" => "",
+                "type" => "login",
+                "url" => "",
+                "path_to_login" => ""
+           ]
+```
+
+Description:
+
+| Key       | Type          | Description  |
+|-------------|-------------|-----|
+| "url" |String| href link, leave blank to show local project
+| "path_to_login" | String| path from url or project to login page
+---
+
+
+**"search"**
+
+Predefined Google search.
+
+Usable: title_button_group, local_button_group, remote_button_group
+```
+0 => [
+                "platform" => "",
+                "browser" => "",
+                "type" => "search",
+                "search_for" => ""
+           ]
+```
+
+Description:
+
+| Key       | Type          | Description  |
+|-------------|-------------|-----|
+| "search_for" |String| term to search
+---
+
+
+**"special"**
+
+Predefined Google search.
+
+Usable: title_button_group, local_button_group, remote_button_group
+```
+0 => [
+                "platform" => "",
+                "browser" => "",
+                "type" => "special",
+                "item" => ""
+           ]
+```
+
+Description:
+
+| Key       | Type          | Description  |
+|-------------|-------------|-----|
+| "item" |String| button html
+
+Typical Bootstrap button: 
+```
+<a href='#' target='_blank' type='button' class='btn btn-default'>Button</a>
+```
+---
+
+**"url_scheme"**
+
+Creates a URL scheme link. OS X user can use my [LocalAdmin-URL-Scheme-Launcher](https://github.com/JoergHolz/LocalAdmin-URL-Scheme-Launcher) (OS X only)
+
+On other platforms you have to right your own launcher.
+
+Ready to use examples for all build in scripts are here: [LocalAdmin-URL-Scheme-Launcher](https://github.com/JoergHolz/LocalAdmin-URL-Scheme-Launcher)
+
+Usable: title_button_group, local_button_group, remote_button_group
+```
+ 0 => [
+                "platform" => "",
+                "browser" => "",
+                "type" => "url_scheme",
+                "script" => "",
+                "add_to_path" => "",
+                "label" => "",
+                "tooltip" => "",
+                "parameters" => ""
+           ]
+```
+
+Description:
+
+| Key       | Type          | Description  |
+|-------------|-------------|-----|
+| "script" |String| script to execute |
+| "add_to_path" |String| for addressing files/folders deeper in your project |
+| "label" |String| button label |
+| "tooltip" |String| tooltip to display |
+| "parameters" |String| optional parameters like "&key=value"|
+
+A typical URL scheme link looks like (For better reading the example is urldecoded.):
+
+```
+localadmin://the_script_name.scpt?siteroot=http://your_website.com&agent_platform=Mac+OS+X&agent_browser=Safari&path=/path/to/project/add_to_path&key=value
+```
+
+The path is created from your project path + add_to path. You need the add_to_path to address files or folders which are deeper located in your project.
+
+LocalAdmin urlencodes all parameters.
+
+---
+
+
+**"shell"**
+
+Executes a shell script by using the PHP exec-function and opens a popup for showing the results, if your script returns some values.
+
+On default the execution of shell scripts is forbidden for security reasons. To enable the execution you have to set "allow_shell_scripts" in the general settings to TRUE.
+
+This function is only for people who know what they are doing, be aware and read the PHP docs and the docs associated with your server!
+
+Usable: title_button_group, local_button_group, remote_button_group
+```
+0 => [
+                "platform" => "",
+                "browser" => "",
+                "type" => "shell",
+                "label" => "",
+                "script" => "",
+                "tooltip" => ""
+           ]
+```
+
+Description:
+
+| Key       | Type          | Description  |
+|-------------|-------------|-----|
+| "script" |String| script to execute |
+| "label" |String| button label |
+| "tooltip" |String| tooltip to display |
+---
+
+
+
+
 
 
 
