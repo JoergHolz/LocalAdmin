@@ -26,8 +26,8 @@ LocalAdmin works in all modern browsers.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.4 All Projects](#44-all-projects)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.5 Project Groups](#45-project-groups)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.6 Settings for each Project](#46-settings-for-each-project)   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.7 Buttons](#47-buttons)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.8 Button Types](#48-button-types)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.7 Buttons](#47-buttons)    
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4.8 Button Types](#48-button-types)   
 [5. Security](#7-security)   
 [6. Extending LocalAdmin](#7-extending-localadmin)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[6.1 Moving htdocs](#61-moving-htdocs)   
@@ -193,7 +193,7 @@ This would list: miller-company and my_web3
 
 ##4 Settings
 
-You find all settings in the file application/config/settings.php. All settings are stored in an array called $config and grouped into:
+You find all settings in application/config/settings.php. All settings are stored in an array called $config and grouped into:
 
 ###4.1 General Behavior of LocalAdmin
 
@@ -219,7 +219,7 @@ $config["general"] = [
 | ------------- |-------------| -----|
 | "tld"      | String | name of your local wildcard TLD, default "dev". **If you don't use a wildcard TLD, LocalAdmin will not work properly out of the box.**
 | "show_tooltips"      | Boolean      | set to TRUE to show tooltips |
-| "allow_shell_scripts" | Boolean      | enables support for shell scripts, default FALSE. **Before enabling, read the sections [Shell Scripts](#shell-scripts) and [Security](#security).** |
+| "allow_shell_scripts" | Boolean      | enables support for shell scripts, default FALSE. **Before careful what you are doing!** |
 | "button_groups_in_two_rows"|Boolean|how the button groups will be shown: FALSE in one row, TRUE in two rows. This setting overrides the same called settings in project groups and settings for each project.
 |"button_groups_in_two_rows_at"|Integer|the window width in pixel, when the button groups will shown in two rows. Good for small browser windows.
 
@@ -506,7 +506,7 @@ Properties you can use in every button type and in dropdowns too:
 | "platform" |String| button will be displayed only on this platform, leave blank for all platforms
 | "browser" | String | button will be displayed only in this browser, leave blank for all browsers
 
-To get the values, which LocalAdmin uses to the detect the agent, click on the info button right of the top navbar.
+To get the values, which LocalAdmin uses to detect the agent, click on the info button right of the top navbar.
 
 **"show_path"**
 
@@ -586,7 +586,7 @@ Usable: title_button_group, local_button_group, remote_button_group
 
 Shows project or URL in new tab.
 
-The difference to "show_in_browser" is, that you can here provide a label.
+The difference to "show_in_browser" is, that you can here provide a label and tooltip.
 
 Usable: title_button_group, local_button_group, remote_button_group
 ```
@@ -770,7 +770,7 @@ Usable: title_button_group, local_button_group, remote_button_group
 
 
 ##5. Security
-You can do some powerful task with LocalAdmin - therefor harden your enviroment. On default Localadmin has a .htaccess in htdocs, which limits the permission only to the local machine.
+You can do some powerful task with LocalAdmin - therefore harden your enviroment. On default LocalAdmin has a .htaccess in htdocs, which limits the permission only to the local machine.
 
 ##6. Extending LocalAdmin
 
