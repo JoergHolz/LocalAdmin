@@ -413,12 +413,12 @@ $config["project_group"][1] = [
 | "icon" | String | path to icon, remarks see below  |
 | "button_groups_in_two_rows" | Boolean | set to true, if you want to show the local-/remote-button-group in two rows.  |
 | "hidden_sites" | Array | list here all sites by their directory names, which you don't want to see in your project group  |
-| "title_buttons" | Array | setup for buttons, shown right of the project group name, see [6.7 Buttons](#67-buttons)  |
-| "local_button_group" | Array | see [6.7 Buttons](#67-buttons)   |
-| "remote_button_group" | Array | see [6.7 Buttons](#67-buttons)  |
+| "title_buttons" | Array | setup for buttons, shown right of the project group name, see [4.7 Buttons](#47-buttons)  |
+| "local_button_group" | Array | see [4.7 Buttons](#47-buttons)   |
+| "remote_button_group" | Array | see [4.7 Buttons](#47-buttons)  |
 
 
-Default project group setup in settings.php, read [4. Get started](#4-get-started):
+Default project group setup in settings.php, read [2. Get started](#2-get-started):
 
 Icons: LocalAdmin tries to fetch a favicon.ico in the web root of your projects. If this fails, it tries to fetch an icon path from your site options, if this also fails, it tries to fetch a path from your project group settings.
 ###4.6 Settings for each Project
@@ -449,8 +449,8 @@ $config["site_options"]["your_directory_name"] = [
 | "name" | String | display name of project, if empty directory name will used  |
 | "icon" | String | path to icon, remarks see below  |
 | "button_groups_in_two_rows" | Boolean | set to true, if you want to show the local-/remote-button-group in two rows.  |
-| "local_button_group" | Array | see [6.7 Buttons](#67-buttons)   |
-| "remote_button_group" | Array | see [6.7 Buttons](#67-buttons)  |
+| "local_button_group" | Array | see [4.7 Buttons](#47-buttons)   |
+| "remote_button_group" | Array | see [4.7 Buttons](#47-buttons)  |
 
 **Attention:**   
 "your_directory_name" has to be changed to the real name of your project. If you use subdomains in a folder the name has to be like:
