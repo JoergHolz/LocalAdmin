@@ -76,11 +76,11 @@ class LocalAdmin extends CI_Controller
                 $all_projects = 0;
                 $hidden_projects = array();
                 $i = 0;
-                $box_output = "<div class='row'>";
+                $box_output = "<div class='row group " . $dirname . "' data-group='" . $dirname . "'>";
                 foreach (glob($project_group["directory"] . "*") as $file) {
                     if ($i > ($columns - 1)) {
                         $i = 0;
-                        $box_output .= "</div><div class='row'>";
+                        $box_output .= "</div><div class='row group " . $dirname . "' data-group='" . $dirname . "'>";
                     }
                     $all_projects++;
                     $project = basename($file);
@@ -96,7 +96,7 @@ class LocalAdmin extends CI_Controller
                             $siteroot = sprintf('http://%1$s.%2$s', $project, $this->config->item("tld", "general"));
                         }
 
-                       $icon = "";
+                        $icon = "";
                         if (!empty($this->config->item("site_options")[$domain]["icon"])) {
                             $icon = "<img src='" . $this->config->item("site_options")[$domain]["icon"] . "' class='icon pull-left'>";
                         } elseif (file_exists($file . $project_group["matching_path"] . "favicon.ico")) {
@@ -224,7 +224,9 @@ class LocalAdmin extends CI_Controller
                     }
                     $output["content"] .= "</div>";
                 }
-                $output["content"] .= "</div></div>";
+
+                $output["content"] .= "<a href='#' class='close-btn pull-right' data-project='" . $dirname . "' data-display='show'><span class='glyphicon glyphicon-remove close-sign'></span></a></div>";
+                $output["content"] .= "</div>";
 
                 $output["content"] .= $box_output;
                 $output["content"] .= "</div></div>";

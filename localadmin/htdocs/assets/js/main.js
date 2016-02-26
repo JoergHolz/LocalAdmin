@@ -7,6 +7,35 @@ var app = {
             $(".preloader").hide();
         });
 
+        var group_states = {};
+        if (Cookies.get("group_states")) {
+            group_states = JSON.parse(Cookies.get("group_states"));
+
+            jQuery.each(group_states, function (group, state) {
+                if (state === "hide") {
+                    $("." + group).hide();
+                    $("[data-project=" + group + "]").data("display", "hide");
+                }
+            });
+        }
+
+        $(".close-btn").on("click", function () {
+            var $this = $(this);
+            var project = $this.data("project");
+            if ($this.data("display") == "show") {
+                $("." + project).hide();
+                $this.data("display", "hide");
+                group_states[project] = "hide";
+            } else {
+                $("." + project).show();
+                $this.data("display", "show");
+                group_states[project] = "show";
+            }
+
+            //Cookies.set("group_states", JSON.stringify(group_states), {expires: 100});
+            Cookies.set("group_states", group_states, {expires: 100});
+        });
+
         $("a[href='#']").click(function (e) {
             e.preventDefault();
         });

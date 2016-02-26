@@ -34,7 +34,7 @@
 */
 
 $config["internal"] = [
-    "version" => "1.0"  // Don't change!
+    "version" => "1.1"  // Don't change!
 ];
 
 /*

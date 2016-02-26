@@ -37,6 +37,7 @@ echo "<!DOCTYPE html><html lang='en'><head>
    <link rel='stylesheet' href='assets/css/main.css'>
     <script src='assets/js/jquery-2.2.0.min.js'></script>
     <script src='assets/js/bootstrap.js'></script>
+    <script src='assets/js/js.cookie.js'></script>
     <script src='assets/js/main.js'></script>
 <script>";
 

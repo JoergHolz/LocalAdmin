@@ -1,1 +1,5 @@
+*** Version 1.1 released (2016-02-26)
+
+- added close button for project groups. Button state is saved in cookie.
+
 *** Version 1.0 released (2016-02-25)
