@@ -32,13 +32,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class LocalAdmin extends CI_Controller
 {
 
-    var $shell_warning = FALSE;
-
-    function __construct()
+   function __construct()
     {
         parent::__construct();
+        $this->config->load("internal");
         $this->config->load("settings");
-        $this->load->library('user_agent');
+        $this->load->library("user_agent");
+        $this->load->library("navbar");
+        $this->load->library("buttons");
         session_start();
     }
 
@@ -145,7 +146,7 @@ class LocalAdmin extends CI_Controller
                                 $box_output .= "<p class='btn-desc'><small>" . $button_group["local_button_group"]["title"] . "</small></p>";
                             }
 
-                            $box_output = $this->_create_button_group($button_group["local_button_group"], $project_data, $box_output);
+                            $box_output = $this->buttons->create_button_group($button_group["local_button_group"], $project_data, $box_output);
 
                             $box_output .= "</div>";
                         }
@@ -162,7 +163,7 @@ class LocalAdmin extends CI_Controller
                                 $box_output .= "<p class='btn-desc'><small>" . $button_group["remote_button_group"]["title"] . "</small></p>";
                             }
 
-                            $box_output = $this->_create_button_group($button_group["remote_button_group"], $project_data, $box_output);
+                            $box_output = $this->buttons->create_button_group($button_group["remote_button_group"], $project_data, $box_output);
                             $box_output .= "</div>";
                         }
 
@@ -212,13 +213,13 @@ class LocalAdmin extends CI_Controller
                                 }
                                 $output["content"] .= "</ul></div>";
                             } elseif ($button["type"] === "url") {
-                                $output["content"] .= $this->_url($button);
+                                $output["content"] .= $this->buttons->url($button);
                             } elseif ($button["type"] === "shell") {
-                                $output["content"] .= $this->_shell($button);
+                                $output["content"] .= $this->buttons->shell($button);
                             } elseif ($button["type"] === "url_scheme") {
-                                $output["content"] .= $this->_url_scheme($button);
+                                $output["content"] .= $this->buttons->url_scheme($button);
                             } elseif ($button["type"] === "special") {
-                                $output["content"] .= $this->_special($button);
+                                $output["content"] .= $this->buttons->special($button);
                             }
                         }
                     }
@@ -232,227 +233,15 @@ class LocalAdmin extends CI_Controller
                 $output["content"] .= "</div></div>";
             }
         }
-        $this->load->view("head", $this->_create_head_data());
-        $this->load->view("navbar", $this->_create_navbar_data());
+        $this->load->view("head", $this->buttons->create_head_data());
+        $this->load->view("navbar", $this->navbar->create_navbar_data());
 
         $this->load->view("content", $output);
         $this->load->view("footer");
 
     }
 
-    function _show_in_browser($button)
-    {
-        if (empty($button["url"])) {
-            $link = $button["siteroot"];
-        } else {
-            $link = $button["url"];
-        }
-        if (!empty($button["dropdown"]) AND $button["dropdown"] === TRUE) {
-            return "<a href='" . $link . "' target='_blank'>Open in new Tab</a>";
-        } else {
-            return "<a data-toggle='tooltip' data-title='Open in new Tab' href='" . $link . "' target='_blank' type='button' class='btn btn-default'><span class='glyphicon glyphicon-link' aria-hidden='true'></span></a>";
-        }
-    }
 
-    function _live_preview($button)
-    {
-        if (empty($button["url"])) {
-            $link = $button["siteroot"];
-        } else {
-            $link = $button["url"];
-        }
-        if (!empty($button["dropdown"]) AND $button["dropdown"] === TRUE) {
-            return "<a data-placement='bottom' data-toggle='popover' title='Live Preview' data-content='
-                    <iframe src=\"" . $link . "\" class=\"iframe loading\" width=\"100%\" height=\"100%\"></iframe>'>Live Preview</a>";
-        } else {
-            return "<a data-title='Live Preview'  data-placement='bottom' type='button' class='btn btn-default livepreview' data-toggle='popover' title='Live Preview' data-content='
-                    <iframe src=\"" . $link . "\" class=\"iframe loading\" width=\"100%\" height=\"100%\"></iframe>'><span class='glyphicon glyphicon-eye-open'></span></a>";
-        }
-    }
-
-    function _url($button)
-    {
-        if (!empty($button["dropdown"]) AND $button["dropdown"] === TRUE) {
-            return "<a href='" . $button["url"] . "' type='button' target='" . $button["target"] . "'>" . $button["label"] . "</a>";
-        } else {
-            return "<a data-toggle='tooltip' data-title='" . $button["tooltip"] . "' href='" . $button["url"] . "' type='button' target='" . $button["target"] . "' class='btn btn-default'>" . $button["label"] . "</a>";
-        }
-    }
-
-    function _shell($button)
-    {
-
-        $uuid = uniqid();
-        $session_data = [
-            "script" => $button["script"],
-        ];
-
-        $_SESSION[$uuid] = $session_data;
-
-        if ($this->config->item("allow_shell_scripts", "general") === TRUE) {
-            $this->shell_warning = FALSE;
-            if (!empty($button["dropdown"]) AND $button["dropdown"] === TRUE) {
-                return "<a data-placement='bottom' data-toggle='popover' title='Shell output' data-content='<div class=\"shelloutput\"></div>' data-title='" . $button["tooltip"] . "' href='#' type='button' class='btn btn-default shell' data-uuid='" . $uuid . "'>" . $button["label"] . "</a>";
-            } else {
-                return "<a data-placement='bottom' data-toggle='popover' title='Shell output' data-content='<div class=\"shelloutput\"></div>' data-title='" . $button["tooltip"] . "' href='#' type='button' class='btn btn-default shell livepreview'                             data-uuid='" . $uuid . "'>" . $button["label"] . "</a>";
-            }
-        } else {
-            $this->shell_warning = TRUE;
-            return;
-        }
-    }
-
-    function _url_scheme($button)
-    {
-        if (!empty($button["url"])) {
-            $button["siteroot"] = $button["url"];
-        }
-        if (!empty($button["dropdown"]) AND $button["dropdown"] === TRUE) {
-            return "<a href='localadmin://" . $button["script"] . "?siteroot=" . urlencode($button["siteroot"]) . "&agent_platform=" . urlencode($this->agent->platform()) . "&agent_browser=" . urlencode($this->agent->browser()) . "&path=" . urlencode($button["file"] . $button["add_to_path"] . $button["parameters"]) . "' target='_blank' class='localadmin'>" . $button["label"] . "</a>";
-        } else {
-            return "<a data-toggle='tooltip' data-title='" . $button["tooltip"] . "' href='localadmin://" . $button["script"] . "?siteroot=" . urlencode($button["siteroot"]) . "&agent_platform=" . urlencode($this->agent->platform()) . "&agent_browser=" . urlencode($this->agent->browser()) . "&path=" . urlencode($button["file"] . $button["add_to_path"] . $button["parameters"]) . "' target='_blank' type='button' class='btn btn-default localadmin'>" . $button["label"] . "</a>";
-        }
-    }
-
-    function _login($button)
-    {
-        if (!empty($button["url"])) {
-            $button["siteroot"] = $button["url"];
-        }
-        if (!empty($button["dropdown"]) AND $button["dropdown"] === TRUE) {
-            return "<a href='" . $button["siteroot"] . $button["path_to_login"] . "' target='_blank'>Login</a>";
-        } else {
-            return "<a data-toggle='tooltip' data-title='Login' href='" . $button["siteroot"] . $button["path_to_login"] . "' target='_blank' type='button' class='btn btn-default'><span class='glyphicon glyphicon-user' aria-hidden='true'></span></a>";
-        }
-    }
-
-    function _search($button)
-    {
-        if (!empty($button["dropdown"]) AND $button["dropdown"] === TRUE) {
-            return "<a href='http://www.google.com/search?q=" . urlencode($button["search_for"]) . "'>" . $button["search_for"] . "</a>";
-        } else {
-            return "<a data-toggle='tooltip' data-title='Google search: " . $button["search_for"] . "' href='http://www.google.com/search?q=" . urlencode($button["search_for"]) . "' target='_blank' type='button' class='btn btn-default'><span class='glyphicon glyphicon-search' aria-hidden='true'></span></a>";
-        }
-    }
-
-    function _special($button)
-    {
-        return $button["item"];
-    }
-
-    function _create_button_group($button_group, $project_data, $box_output)
-    {
-        $box_output .= "<div class='btn-group responsive-btn-group'>";
-        foreach ($button_group["buttons"] as $button) {
-            $button["file"] = $project_data["file"];
-            $button["domain"] = $project_data["domain"];
-            $button["siteroot"] = $project_data["siteroot"];
-            $button["project"] = $project_data["project"];
-
-            if (empty($button["target"])) {
-                $button["target"] = "_blank";
-            }
-            if (empty($button["tooltip"])) {
-                $button["tooltip"] = "";
-            }
-
-            if ((empty($button["platform"]) OR $button["platform"] === $this->agent->platform()) AND (empty($button["browser"]) OR $button["browser"] === $this->agent->browser())) {
-                if ($button["type"] === "dropdown") {
-
-                    $box_output .= "<div class='btn-group'><a href='#' class='btn btn-default dropdown-toggle' data-toggle='dropdown' aria-expanded='false'>
-                                      " . $button["name"] . "
-                                      <span class='caret'></span>
-                                    </a>
-                                    <ul class='dropdown-menu'>";
-
-                    foreach ($button["items"] AS $button) {
-                        if ((empty($button["platform"]) OR $button["platform"] === $this->agent->platform()) AND (empty($button["browser"]) OR $button["browser"] === $this->agent->browser())) {
-                            $button["dropdown"] = TRUE;
-                            $button["file"] = $project_data["file"];
-                            $button["domain"] = $project_data["domain"];
-                            $button["siteroot"] = $project_data["siteroot"];
-                            $button["project"] = $project_data["project"];
-                            $method = "_" . $button["type"];
-                            $box_output .= "<li><a href='#'>" . $this->$method ($button) . "</a></li>";
-                        }
-                    }
-                    $box_output .= "</ul></div>";
-
-                } else {
-                    $method = "_" . $button["type"];
-                    $box_output .= $this->$method ($button);
-                }
-            }
-        }
-        $box_output .= "</div>";
-        return $box_output;
-    }
-
-    function _create_head_data()
-    {
-        $output = array();
-
-        if ($this->config->item("show_splashscreen", "splashscreen") === TRUE) {
-            $output["show_splashscreen"] = TRUE;
-        } else {
-            $output["show_splashscreen"] = FALSE;
-        }
-        if (!empty($this->config->item("logo_path", "splashscreen"))) {
-            $output["splashscreen_logo"] = "<img src='" . $this->config->item("logo_path", "splashscreen") . "' alt='Logo' class='logo'>";
-        } else {
-            $output["splashscreen_logo"] = "";
-        }
-        if (!empty($this->config->item("text", "splashscreen"))) {
-            $output["splashscreen_text"] = "<h2>" . $this->config->item("text", "splashscreen") . "</h2>";
-        } else {
-            $output["splashscreen_text"] = "";
-        }
-
-        if ($this->shell_warning === TRUE) {
-            $output["shell_warning"] = TRUE;
-        } else {
-            $output["shell_warning"] = FALSE;
-        }
-
-        return $output;
-
-    }
-
-    function _create_navbar_data()
-    {
-        $output = array();
-
-        if (!empty($this->config->item("general", "navbar")["logo_path"])) {
-            $output["logo"] = "<img src='" . $this->config->item("general", "navbar")["logo_path"] . "' class='logo pull-left'>";
-        } else {
-            $output["logo"] = "";
-        }
-        if (!empty($this->config->item("general", "navbar")["title"])) {
-            $output["title"] = $this->config->item("general", "navbar")["title"];
-        } else {
-            $output["title"] = "";
-        }
-
-        if ($this->config->item("general", "navbar")["show_local_ip"] === TRUE) {
-            $output["local_ip"] = "<li><p>Local: " . getHostByName(getHostName()) . "</a></li>";
-        } else {
-            $output["local_ip"] = "";
-        }
-        if ($this->config->item("general", "navbar")["show_public_ip"] === TRUE) {
-            $output["public_ip"] = "<li><p>Public: <span id='public_ip'>tba.</span></p></li>";
-        } else {
-            $output["public_ip"] = "";
-        }
-
-        if (!empty($this->config->item("links", "navbar"))) {
-            $output["links"] = $this->config->item("links", "navbar");
-        } else {
-            $output["links"] = "";
-        }
-
-        return $output;
-
-    }
 
     function exec_shell()
     {
@@ -477,7 +266,7 @@ class LocalAdmin extends CI_Controller
         $output["title"] = "System Info";
 
         $this->load->view("head");
-        $this->load->view("navbar", $this->_create_navbar_data());
+        $this->load->view("navbar", $this->navbar->create_navbar_data());
         $this->load->view("container", $output);
         $this->load->view("footer");
     }

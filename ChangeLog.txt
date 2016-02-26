@@ -1,3 +1,15 @@
+*** Version 1.1.1 released (2016-02-26)
+
+- version setting moved to config->internal
+
+- systeminfo in new controller systeminfo
+
+- basic settings for systeminfo changed to ?c=systeminfo
+
+- some new arrangements:
+
+  new Libraries: Navbar and Buttons
+
 *** Version 1.1 released (2016-02-26)
 
 - added close button for project groups. Button state is saved in cookie.

@@ -42,7 +42,7 @@ LocalAdmin works in all modern browsers.
 – Local Web Server     
 – Local Wildcard Domain (tld)     
 – PHP >= 5.6, works great with PHP 7     
-– For best experience: [LocalAdmin-URL-Scheme-Launcher](https://github.com/JoergHolz/LocalAdmin-URL-Scheme-Launcher) (OS X 
+– For best experience: [LocalAdmin-URL-Scheme-Launcher](https://github.com/JoergHolz/LocalAdmin-URL-Scheme-Launcher) (OS X)
 
 ##2. Get started
 
@@ -58,11 +58,11 @@ LocalAdmin works in all modern browsers.
 
 2. Download and unzip LocalAdmin
 
-3. Move it to the root of your webserver where all your other project are
+3. Move it to the root of your webserver, where all your other projects are.
 
-4. Depending on your vhost settings, there may be a need of some changes. The document root of LocalAdmin is /htdocs. If you want to move the folder htdocs somewhere else, read below [Extending LocalAdmin](#11-extending-localadmin) 
+4. Depending on your vhost settings, you may need to make some changes. The document root of LocalAdmin is /htdocs. If you want to move the folder htdocs somewhere else, read below [Extending LocalAdmin](#11-extending-localadmin) 
 
-5. Open settings.php in localadmin/application/config and find the following configurations:
+5. Open settings.php in localadmin/application/config :
 
     Set your local wildcard domain in "tld":
 
@@ -75,7 +75,7 @@ LocalAdmin works in all modern browsers.
    
         $config["project_group"][0] = [
                 "name" => "My Projects",
-                "directory" => "/absolute/path/to/webroot/",
+                "directory" => "/absolute/path/to/web_root/",
                 ...
 
            
@@ -90,13 +90,13 @@ LocalAdmin works in all modern browsers.
 
 ##3. How it works
 
-LocalAdmin lists all folders (No files!), which are in a given directory **AND** the content of these folders matches your "matching_path". Some examples:
+LocalAdmin lists all folders (No files!), which are in a given directory **AND** if the content of these folders matches your "matching_path". Some examples:
 
-**Lists everything in your webroot:**
+**Lists everything in your web root:**
 
 ```
 $config["project_group"][0] = [
-        "directory" => "/absolute/path/to/webroot/",
+        "directory" => "/absolute/path/to/web_root/",
         "matching_path" => "/",
         ...
 ```
@@ -104,7 +104,7 @@ $config["project_group"][0] = [
  
 ```     
 $config["project_group"][0] = [
-        "directory" => "/absolute/path/to/webroot/",
+        "directory" => "/absolute/path/to/web_root/",
         "matching_path" => "/www/",
         ...
 ```
@@ -113,7 +113,7 @@ $config["project_group"][0] = [
 
 ```
 $config["project_group"][0] = [
-       "directory" => "/absolute/path/to/webroot/",
+       "directory" => "/absolute/path/to/web_root/",
         "matching_path" => "/www/htdocs/",
         ...
 ```
@@ -157,22 +157,22 @@ Your settings could look like:
 
 ```
 $config["project_group"][0] = [
-        "directory" => "/absolute/path/to/webroot/mobile-apps/",
+        "directory" => "/absolute/path/to/web_root/mobile-apps/",
         "matching_path" => "/",
         ...
 
 $config["project_group"][1] = [
-        "directory" => "/absolute/path/to/webroot/miller-company/",
+        "directory" => "/absolute/path/to/web_root/miller-company/",
         "matching_path" => "/htdocs/",
         ...
         
 $config["project_group"][2] = [
-        "directory" => "/absolute/path/to/webroot/",
+        "directory" => "/absolute/path/to/web_root/",
         "matching_path" => "/htdocs/",
         ...
 ```
 
-The first setting lists every folder in mobile-apps because of the simple slash.
+The first setting lists every folder in mobile-apps because of the single slash.
 
 The second setting lists the folders backend, frontend and shop **but not** the documents folder, because it has no htdocs inside.
 
@@ -180,18 +180,18 @@ The third setting lists my_web1 … my_web4 **but not** the folders mobile-apps 
 
 
 ####3.2 Advanced Example
-Lets take the above example an say we want to have an extra group listed in LocalAdmin which contains all projects having a document folder inside:
+Let's take the above example and say we want to have an extra group listed in LocalAdmin which contains all projects having a document folder inside:
  
 ```
 $config["project_group"][0] = [
-        "directory" => "/absolute/path/to/webroot/",
+        "directory" => "/absolute/path/to/web_root/",
         "matching_path" => "/documents/",
         ...
 ``` 
 
 This would list: miller-company and my_web3
 
-##4 Settings
+##4. Settings
 
 You find all settings in application/config/settings.php. All settings are stored in an array called $config and grouped into:
 
@@ -219,9 +219,9 @@ $config["general"] = [
 | ------------- |-------------| -----|
 | "tld"      | String | name of your local wildcard TLD, default "dev". **If you don't use a wildcard TLD, LocalAdmin will not work properly out of the box.**
 | "show_tooltips"      | Boolean      | set to TRUE to show tooltips |
-| "allow_shell_scripts" | Boolean      | enables support for shell scripts, default FALSE. **Before careful what you are doing!** |
-| "button_groups_in_two_rows"|Boolean|how the button groups will be shown: FALSE in one row, TRUE in two rows. This setting overrides the same called settings in project groups and settings for each project.
-|"button_groups_in_two_rows_at"|Integer|the window width in pixel, when the button groups will shown in two rows. Good for small browser windows.
+| "allow_shell_scripts" | Boolean      | enables support for shell scripts, default FALSE. **Be careful what you are doing!** |
+| "button_groups_in_two_rows"|Boolean|how the button groups will be shown: FALSE in one row, TRUE in two rows. This setting overwrites the same settings in project groups and settings for each project.
+|"button_groups_in_two_rows_at"|Integer|the window width in pixel, when the button groups are shown in two rows. Good for small browser windows.
 
 
 ###4.2 Splashscreen
@@ -300,7 +300,7 @@ Default settings:
 $config["navbar"]["links"] = [
     0 => [
         "name" => "System Info",
-        "url" => "?c=localadmin&m=systeminfo",
+        "url" => "?c=systeminfo",
         "target" => "_self",
     ],
     1 => [
@@ -333,7 +333,7 @@ $config["navbar"]["links"] = [
 |-------------|-------------|-----|
 |"name"|String|link name|
 |"url"|String|where to jump|
-|"target"|String|where to show, if empty "_blank" is used|
+|"target"|String|if empty "_blank" is used|
 |"dropdown"|Array|indicates a dropdown|
 |"divider"|Boolean|set to TRUE to show a divider (separator line) below a link in dropdown
 
@@ -375,7 +375,7 @@ Basic setup, which lists all directories. Use this one as a template and extend 
 ```
 $config["project_group"][0] = [
     "name" => "",
-    "directory" => "/absolute/path/to/webroot/",
+    "directory" => "/absolute/path/to/web_root/",
     "matching_path" => "/",
     "has_subdomains" => FALSE,
     "columns" => 2,
@@ -391,13 +391,13 @@ Showing two project groups:
 
 ```
 $config["project_group"][0] = [
-    "directory" => "/absolute/path/to/webroot/",
+    "directory" => "/absolute/path/to/web_root/",
     "matching_path" => "/", 
     ...
 ];
 
 $config["project_group"][1] = [
-    "directory" => "/absolute/path/to/webroot/another_path/",
+    "directory" => "/absolute/path/to/web_root/another_path/",
     "matching_path" => "/", 
     ...
 ];
@@ -405,15 +405,15 @@ $config["project_group"][1] = [
 
 | Key       | Type          | Description  |
 |-------------|-------------|-----|
-| "name" | String | display name of project group, if empty directory name will used  |
-| "directory" | String | absolute path to your webroot/projectfolder, read [How it works](#5-how-it-works)   |
+| "name" | String | display name of project group, if empty directory name will be used  |
+| "directory" | String | absolute path to your web_root/projectfolder, read [How it works](#5-how-it-works)   |
 | "matching_path" | String | the path matching condition for showing folders/projects, read [How it works](#5-how-it-works)  |
-| "has_subdomains| Boolean | set to true, if you have setup your vhost to use subdomains in the path of your project group  |
+| "has_subdomains| Boolean | set to TRUE, if you had setup your vhost to use subdomains in the path of your project group  |
 | "columns" | Integer | number of projects to be shown in one row, can be 1, 2, 3 or 4  |
 | "icon" | String | path to icon, remarks see below  |
-| "button_groups_in_two_rows" | Boolean | set to true, if you want to show the local-/remote-button-group in two rows.  |
+| "button_groups_in_two_rows" | Boolean | set to TRUE, if you want to show the local-/remote-button-group in two rows  |
 | "hidden_sites" | Array | list here all sites by their directory names, which you don't want to see in your project group  |
-| "title_buttons" | Array | setup for buttons, shown right of the project group name, see [4.7 Buttons](#47-buttons)  |
+| "title_buttons" | Array | setup for buttons, shown on the right side of the project group name, see [4.7 Buttons](#47-buttons)  |
 | "local_button_group" | Array | see [4.7 Buttons](#47-buttons)   |
 | "remote_button_group" | Array | see [4.7 Buttons](#47-buttons)  |
 
@@ -446,14 +446,14 @@ $config["site_options"]["your_directory_name"] = [
 
 | Key       | Type          | Description  |
 |-------------|-------------|-----|
-| "name" | String | display name of project, if empty directory name will used  |
+| "name" | String | display name of project, if empty directory name will be used  |
 | "icon" | String | path to icon, remarks see below  |
-| "button_groups_in_two_rows" | Boolean | set to true, if you want to show the local-/remote-button-group in two rows.  |
+| "button_groups_in_two_rows" | Boolean | set to TRUE, if you want to show the local-/remote-button-group in two rows  |
 | "local_button_group" | Array | see [4.7 Buttons](#47-buttons)   |
 | "remote_button_group" | Array | see [4.7 Buttons](#47-buttons)  |
 
 **Attention:**   
-"your_directory_name" has to be changed to the real name of your project. If you use subdomains in a folder the name has to be like:
+"your_directory_name" has to be changed to the real name of your project. If you use subdomains in a folder the name has to be like this:
 ```
 subdomain.domain e.g. blog.example
 ```
@@ -462,7 +462,7 @@ subdomain.domain e.g. blog.example
 Icons: LocalAdmin tries to fetch a favicon.ico in the web root of your projects. If this fails, it tries to fetch an icon path from your site options, if this also fails, it tries to fetch a path from your project group settings.
 
 ###4.7 Buttons
-Buttons are grouped in button groups and could be placed right of the project group title (setting: "title_button_group"), as a local button group (setting: "local_button_group") or remote button group (setting: "remote_button_group") in the project panel.
+Buttons are grouped in button groups and could be placed on the right right side of the project group title (setting: "title_button_group"), as a local button group (setting: "local_button_group") or remote button group (setting: "remote_button_group") in the project panel.
 
 You can define buttons in the project group settings:
 
@@ -512,7 +512,7 @@ To get the values, which LocalAdmin uses to detect the agent, click on the info 
 
 Shows path of project group, number of projects and number of hidden projects.
 
-Usable: title_button_group
+Where to use: title_button_group
 ```
 0 => [
              "platform" => "",
@@ -527,7 +527,7 @@ Usable: title_button_group
 
 Dropdown which lists hidden projects. Only visible when there are hidden projects.
 
-Usable: title_button_group
+Where to use: title_button_group
 ```
 0 => [
            "platform" => "",
@@ -542,7 +542,7 @@ Usable: title_button_group
 
 Shows the buttons defined in «items» as a dropdown list.
 
-Usable: title_button_group, local_button_group, remote_button_group
+Where to use: title_button_group, local_button_group, remote_button_group
 ```
 0 => [
                 "platform" => "",
@@ -565,7 +565,7 @@ Usable: title_button_group, local_button_group, remote_button_group
 
 Shows project or URL in new tab.
 
-Usable: title_button_group, local_button_group, remote_button_group
+Where to use: title_button_group, local_button_group, remote_button_group
 ```
 0 => [
                 "platform" => "",
@@ -586,9 +586,9 @@ Usable: title_button_group, local_button_group, remote_button_group
 
 Shows project or URL in new tab.
 
-The difference to "show_in_browser" is, that you can here provide a label and tooltip.
+The difference to "show_in_browser" is, here you can use: label and tooltip.
 
-Usable: title_button_group, local_button_group, remote_button_group
+Where to use: title_button_group, local_button_group, remote_button_group
 ```
 0 => [
                 "platform" => "",
@@ -613,9 +613,9 @@ Usable: title_button_group, local_button_group, remote_button_group
 
 Shows project or URL as live preview in popup.
 
-**Live preview uses an iframe, so the site you want to see has to provide this function.**
+**Live preview uses an iframe, so the site you want to see has to support this function.**
 
-Usable: title_button_group, local_button_group, remote_button_group
+Where to use: title_button_group, local_button_group, remote_button_group
 ```
 0 => [
                 "platform" => "",
@@ -636,7 +636,7 @@ Usable: title_button_group, local_button_group, remote_button_group
 
 Shows login in new tab.
 
-Usable: title_button_group, local_button_group, remote_button_group
+Where to use: title_button_group, local_button_group, remote_button_group
 ```
 0 => [
                 "platform" => "",
@@ -658,7 +658,7 @@ Usable: title_button_group, local_button_group, remote_button_group
 
 Predefined Google search.
 
-Usable: title_button_group, local_button_group, remote_button_group
+Where to use: title_button_group, local_button_group, remote_button_group
 ```
 0 => [
                 "platform" => "",
@@ -678,7 +678,7 @@ Usable: title_button_group, local_button_group, remote_button_group
 
 Predefined Google search.
 
-Usable: title_button_group, local_button_group, remote_button_group
+Where to use: title_button_group, local_button_group, remote_button_group
 ```
 0 => [
                 "platform" => "",
@@ -702,11 +702,11 @@ Typical Bootstrap button:
 
 Creates a URL scheme link. OS X user can use my [LocalAdmin-URL-Scheme-Launcher](https://github.com/JoergHolz/LocalAdmin-URL-Scheme-Launcher) (OS X only)
 
-On other platforms you have to right your own launcher.
+On other platforms you have to write your own launcher.
 
 Ready to use examples for all build in scripts are here: [LocalAdmin-URL-Scheme-Launcher](https://github.com/JoergHolz/LocalAdmin-URL-Scheme-Launcher)
 
-Usable: title_button_group, local_button_group, remote_button_group
+Where to use: title_button_group, local_button_group, remote_button_group
 ```
  0 => [
                 "platform" => "",
@@ -728,13 +728,13 @@ Usable: title_button_group, local_button_group, remote_button_group
 | "tooltip" |String| tooltip to display |
 | "parameters" |String| optional parameters like "&key=value"|
 
-A typical URL scheme link looks like (For better reading the example is urldecoded.):
+A typical URL scheme link looks like this (Example is urldecoded.):
 
 ```
 localadmin://the_script_name.scpt?siteroot=http://your_website.com&agent_platform=Mac+OS+X&agent_browser=Safari&path=/path/to/project/add_to_path&key=value
 ```
 
-The path is created from your project path + add_to path. You need the add_to_path to address files or folders which are deeper located in your project.
+The path is created from your project path + add_to_path. You need the add_to_path to address files or folders which are deeper located in your project.
 
 LocalAdmin urlencodes all parameters.
 
@@ -749,7 +749,7 @@ On default the execution of shell scripts is forbidden for security reasons. To 
 
 This function is only for people who know what they are doing, be aware and read the PHP docs and the docs associated with your server!
 
-Usable: title_button_group, local_button_group, remote_button_group
+Where to use: title_button_group, local_button_group, remote_button_group
 ```
 0 => [
                 "platform" => "",
@@ -770,14 +770,14 @@ Usable: title_button_group, local_button_group, remote_button_group
 
 
 ##5. Security
-You can do some powerful task with LocalAdmin - therefore harden your enviroment. On default LocalAdmin has a .htaccess in htdocs, which limits the permission only to the local machine.
+You can do some powerful tasks with LocalAdmin - therefore harden your enviroment. On default LocalAdmin has a .htaccess in htdocs, which limits the permission only to the local machine.
 
 ##6. Extending LocalAdmin
 
 LocalAdmin is based on [Codeigniter](https://www.codeigniter.com).
 
 ###6.1 Moving htdocs
-If you need or want to change the location of htdocs, then you have to change these two setting in index.php:
+If you need or want to change the location of htdocs, then you have to change these two settings in index.php:
 
 ```
 $system_path = '../system';
@@ -788,7 +788,7 @@ $application_folder = '../application';
 ```
 
 ###6.2 Creating your own Buttons
-Every button type has a corresponding private function, which is located in application/controllers/LocalAdmin.php.
+Every button type has a corresponding function, which is in application/libaries/Buttons.php.
 
 If you define a new type «my_button»:
  
@@ -805,14 +805,14 @@ If you define a new type «my_button»:
      ]
 ```
 
-You need the private function «_my_button» in application/controllers/LocalAdmin.php
+You need the function «my_button» in application/libaries/Buttons.php
 
 ```
   function _my_button($button){
         // create your button as <a href='…>label</a> and return it
     }
 ```
-The function has to return HTML, see the other button functions in application/controllers/LocalAdmin.php.
+The function has to return HTML, see the other button functions in application/libaries/Buttons.php.
 
 $button contains:
 ```
@@ -830,7 +830,7 @@ $button contains:
 How to create Bootstrap Buttons: [Buttons](http://getbootstrap.com/css/#buttons). Remember to return \<a> buttons otherwise you have to write same CSS and urlencode your links.
 
 ##7. About
-Weeks ago I found this great tool: [Localhomepage](http://cmall.github.io/LocalHomePage/) from [Chris Mallinson](https://mallinson.ca). I used it for several days and thought it would be a nice idea to have some more functions.
+Weeks ago I found this great tool: [Localhomepage](http://cmall.github.io/LocalHomePage/) from [Chris Mallinson](https://mallinson.ca). I used it for several days and thought it would be a nice idea to have some more features.
 
 ##8. Credits
 
