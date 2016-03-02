@@ -70,13 +70,48 @@ var app = {
             html: true,
             trigger: "click",
             container: "body"
+        })
+        ;
+
+        $(".pop").popover({
+            html: true,
+            trigger: "click",
+            placement: "bottom",
+            container: "#abc",
+            content: "<div id='cordova-output'></div>",
+            title: "<p class='pull-left'>Cordova Output</p><p id='cordova-spinner' class='pull-right cordova-spinner'></p>",
+            template: '<div class="popover cordova"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
         });
 
-        $("body").on("click", function (e) {
-            $("[data-toggle='popover']").each(function () {
-                if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $(".popover").
-                        has(e.target).length === 0) {
-                    $(this).popover("hide");
+        $(".pop").on("shown.bs.popover", function () {
+            var offset = $("#abc").offset();
+            offset.left = offset.left - 150;
+            offset.top = offset.top + 50;
+            $(".popover").offset(offset);
+        });
+
+
+        $(document).on('click', function (e) {
+            var
+                $popover,
+                $target = $(e.target);
+
+            //do nothing if there was a click on popover content
+            if ($target.hasClass('popover') || $target.closest('.popover').length) {
+                return;
+            }
+
+            $('[data-toggle="popover"], .pop').each(function () {
+                $popover = $(this);
+
+                if (!$popover.is(e.target) &&
+                    $popover.has(e.target).length === 0 &&
+                    $('.popover').has(e.target).length === 0)
+                {
+                    $popover.popover('hide');
+                } else {
+                    //fixes issue described above
+                    $popover.popover('toggle');
                 }
             });
         });
@@ -135,4 +170,3 @@ var app = {
         }
     }
 };
-
